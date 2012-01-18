@@ -60,7 +60,7 @@ namespace Bioimagery {
                 // Return the data
             } else {
                 // Something went wrong getting the data
-                fprintf(stderr, "Error getting metadata for image: %i \n", res);
+                fprintf(stderr, "Error GETing URL: %s -> %i \n", url, res);
             }
             
             curl_easy_cleanup(curl);
@@ -81,9 +81,25 @@ namespace Bioimagery {
         // Parse metadata
         Document document;
         if(document.Parse<0>(metadataJSON).HasParseError()) {
-            
+            // Failed to parse
+            fprintf(stderr, "Error Parsing metadata JSON");
+            return;
+        } 
+         
+        if(document.IsObject() 
+            && document.HasMember("filename") 
+            && document.HasMember("height") 
+            && document.HasMember("width") 
+            && document.HasMember("description")) {
+            // We have all the necessary fields
+
+            filename    = document["filename"].GetString();
+            height      = document["height"].GetUint();
+            width       = document["width"].GetUint();
+            description = document["description"].GetString();
+        
         } else {
-            
+            fprintf(stderr, "Image metadata is missing params");
         }
 
     }
@@ -98,10 +114,18 @@ namespace Bioimagery {
         // Parse ROIs
         Document document;
         if(document.Parse<0>(roiJSON).HasParseError()) {
-            
-        } else {
-            
+            fprintf(stderr, "Error Parsing ROI JSON");
+            return;
+        } 
+        
+        // Build a bunch of ROIs
+        if(document.IsArray()) {
+            for(SizeType i = 0; i < document.Size(); i++) {
+                // Build an ROI 
+                
+            }
         }
+        
     }
 
     void LabeledImage::loadImage(string host) {
