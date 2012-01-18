@@ -3,6 +3,7 @@
 #include <curl/curl.h>
 
 using namespace cv;
+using namespace rapidjson;
 
 namespace Bioimagery {
 
@@ -73,27 +74,46 @@ namespace Bioimagery {
     void LabeledImage::loadMetadata(string host) {
         // URL: host/image/id/describe
 
-        char url[host.length() + 16 + 10];
-        sprintf(url, "%s/image/%u/describe", host.c_str(), id);
+        char url[host.length() + 23 + 10];
+        sprintf(url, "http://%s/image/%u/describe", host.c_str(), id);
         const char* metadataJSON = curlGet(url);
         
         // Parse metadata
-
+        Document document;
+        if(document.Parse<0>(metadataJSON).HasParseError()) {
+            
+        } else {
+            
+        }
 
     }
 
     void LabeledImage::loadRois(string host) {
         // URL: host/image/id/rois
         
-        char url[host.length() + 16 + 10];
-        sprintf(url, "%s/image/%u/rois", host.c_str(), id);
+        char url[host.length() + 19 + 10];
+        sprintf(url, "http://%s/image/%u/rois", host.c_str(), id);
         const char* roiJSON = curlGet(url);
 
         // Parse ROIs
+        Document document;
+        if(document.Parse<0>(roiJSON).HasParseError()) {
+            
+        } else {
+            
+        }
     }
 
     void LabeledImage::loadImage(string host) {
         // URL: host/image/id
+
+        char url[host.length() + 14 + 10];
+        sprintf(url, "http://%s/image/%u", host.c_str(), id);
+        const char* imageBuffer = curlGet(url);
+
+        // Make an imageheader
+
+        // Assign this to an image header
     }
 
 }
