@@ -2,21 +2,21 @@
 
 namespace Bioimagery {
 
-	Roi::Roi():tags(NULL) {
-		
-	}
+    Roi::Roi():tags(NULL) {
+        
+    }
 
-	Roi::~Roi() {
-		if(tags != NULL) {
-			delete tags;
-		}
-	}
+    Roi::~Roi() {
+        if(tags != NULL) {
+            delete tags;
+        }
+    }
 
-	void Roi::loadTags(string host) {
-		
-	}
+    void Roi::loadTags(string host) {
+        
+    }
 
-	void Roi::loadFromDocument(Document *doc) {
-		
-	}
+    void Roi::loadFromDocument(Document *doc) {
+        
+    }
 }

@@ -13,40 +13,40 @@ using namespace rapidjson;
 using namespace std;
 
 namespace Bioimagery { 
-	
-	class LabeledImage {
+    
+    class LabeledImage {
 
-	public:
-		LabeledImage(uint32_t t_id);
-		virtual ~LabeledImage();
-	
-		/* data */
-		uint32_t id;
+    public:
+        LabeledImage(uint32_t t_id);
+        virtual ~LabeledImage();
+    
+        /* data */
+        uint32_t id;
 
-		string filename;
-		
-		uint32_t height;
-		uint32_t width;
+        string filename;
+        
+        uint32_t height;
+        uint32_t width;
 
-		string description;
+        string description;
 
-		IplImage *image;
+        IplImage *image;
 
-		Roi *rois;
+        Roi *rois;
 
-		// Populates this image from the host's db
-		void load(string host);
+        // Populates this image from the host's db
+        void load(string host);
 
-	private:
-		// Gets image metadata
-		void loadMetadata(string host);
+    private:
+        // Gets image metadata
+        void loadMetadata(string host);
 
-		// Gets the Rois
-		void loadRois(string host);
+        // Gets the Rois
+        void loadRois(string host);
 
-		// Gets the image itself
-		void loadImage(string host);
-	};
+        // Gets the image itself
+        void loadImage(string host);
+    };
 
 } /* namespace Bioimagery */
 

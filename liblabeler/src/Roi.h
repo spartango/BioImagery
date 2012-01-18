@@ -8,35 +8,35 @@ using namespace rapidjson;
 using namespace std;
 
 namespace Bioimagery { 
-	
-	class Roi {
+    
+    class Roi {
 
-	public:
-		Roi();
-		virtual ~Roi();
-	
-		/* data */
-		uint32_t id;
-		
-		int32_t x;
-		int32_t y;
-		
-		uint32_t height;
-		uint32_t width;
+    public:
+        Roi();
+        virtual ~Roi();
+    
+        /* data */
+        uint32_t id;
+        
+        int32_t x;
+        int32_t y;
+        
+        uint32_t height;
+        uint32_t width;
 
-		uint32_t confidence;
+        uint32_t confidence;
 
-		// Tag ids
-		uint32_t *tags;
+        // Tag ids
+        uint32_t *tags;
 
-		void loadTags(string host);
+        void loadTags(string host);
 
-		/* deserialization */
-		void loadFromDocument(Document *doc);
+        /* deserialization */
+        void loadFromDocument(Document *doc);
 
-		/* serialization */
-		string toJSON();
-	};
+        /* serialization */
+        string toJSON();
+    };
 
 } /* namespace Bioimagery */
 
