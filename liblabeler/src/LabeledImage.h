@@ -46,11 +46,6 @@ namespace Bioimagery {
 
 		// Gets the image itself
 		void loadImage();
-
-		// deserialization  
-		void metadataFromDocument(Document *doc);
-
-		void imageFromBuffer(char *buffer);
 	};
 
 } /* namespace Bioimagery */
