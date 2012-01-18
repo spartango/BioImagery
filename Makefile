@@ -1,9 +1,9 @@
 CC=g++
 CFLAGS= -Wall
 LDFLAGS = -I/usr/local/include/opencv2 -lm -lopencv_core -lopencv_highgui -lopencv_video -lopencv_imgproc -lopencv_gpu -lopencv_calib3d -lopencv_legacy -lopencv_objdetect -lopencv_ml
-SRC = letter_recog.cpp
-OBJECT = letter_recog.o
-ALL = letter_recog
+SRC = edge.cpp
+OBJECT = edge.o
+ALL = edge
 
 all: $(ALL)
 
