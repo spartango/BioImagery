@@ -19,19 +19,21 @@ namespace Bioimagery {
 	}
 
 	void LabeledImage::load(string host) {
-		
+		loadMetadata(host);
+		loadRois(host);
+		loadImage(host);	
 	}
 
 	// Helpers
-	void LabeledImage::loadMetadata() {
+	void LabeledImage::loadMetadata(string host) {
 		
 	}
 
-	void LabeledImage::loadRois() {
+	void LabeledImage::loadRois(string host) {
 		
 	}
 
-	void LabeledImage::loadImage() {
+	void LabeledImage::loadImage(string host) {
 		
 	}
 

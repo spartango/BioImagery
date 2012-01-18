@@ -39,13 +39,13 @@ namespace Bioimagery {
 
 	private:
 		// Gets image metadata
-		void loadMetadata();
+		void loadMetadata(string host);
 
 		// Gets the Rois
-		void loadRois();
+		void loadRois(string host);
 
 		// Gets the image itself
-		void loadImage();
+		void loadImage(string host);
 	};
 
 } /* namespace Bioimagery */
