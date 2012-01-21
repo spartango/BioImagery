@@ -1,6 +1,8 @@
 #include "LabeledImage.h"
+#include "util/CurlUtils.h"
+
 #include "opencv2/core/core_c.h"
-#include <curl/curl.h>
+
 
 using namespace cv;
 using namespace rapidjson;
@@ -26,50 +28,6 @@ namespace Bioimagery {
         loadImage(host);    
     }
 
-    // CURL buffer
-    static string curlBuffer;  
-      
-    // Callback function for CURL 
-    static size_t curlWriter(char *data, size_t size, size_t nmemb,  
-                      string *buffer)  
-    {  
-        // Append the data to the buffer    
-        buffer->append(data, size * nmemb);  
-        
-        return size * nmemb;  
-    }  
-
-    static const char* curlGet(char* url) {
-        CURL *curl;
-        CURLcode res;
-
-        curl = curl_easy_init();
-        
-        // Clear the curl buffer
-        curlBuffer.clear();
-        
-        if(curl) {  
-            curl_easy_setopt(curl, CURLOPT_URL, url);  
-            curl_easy_setopt(curl, CURLOPT_HEADER, 0);  
-            curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1);  
-            curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, curlWriter);  
-            curl_easy_setopt(curl, CURLOPT_WRITEDATA, &curlBuffer);             
-
-            res = curl_easy_perform(curl);
-            if(res) {
-                // Return the data
-            } else {
-                // Something went wrong getting the data
-                fprintf(stderr, "Error GETing URL: %s -> %i \n", url, res);
-            }
-            
-            curl_easy_cleanup(curl);
-        }
-        
-        return curlBuffer.c_str();
-
-    }
-
     // Helpers
     void LabeledImage::loadMetadata(string host) {
         // URL: host/image/id/describe
@@ -93,10 +51,15 @@ namespace Bioimagery {
             && document.HasMember("description")) {
             // We have all the necessary fields
 
-            filename    = document["filename"].GetString();
-            height      = document["height"].GetUint();
-            width       = document["width"].GetUint();
-            description = document["description"].GetString();
+            filename = document["filename"].GetString();
+            height   = document["height"].GetUint();
+            width    = document["width"].GetUint();
+
+            if(!document["description"].IsNull()) {
+                description = document["description"].GetString();
+            } else {
+                description = "";
+            }
         
         } else {
             fprintf(stderr, "Image metadata is missing params");
@@ -120,9 +83,12 @@ namespace Bioimagery {
         
         // Build a bunch of ROIs
         if(document.IsArray()) {
+            // Allocate an array to hold the rois
+            rois = new Roi[document.Size()];
+
             for(SizeType i = 0; i < document.Size(); i++) {
                 // Build an ROI 
-                
+                rois[i].loadFromDocument(document[i]);   
             }
         }
         
