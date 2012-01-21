@@ -18,7 +18,7 @@ namespace Bioimagery {
         return size * nmemb;  
     }  
 
-    static const char* curlGet(char* url) {
+    static string curlGet(char* url) {
         CURL *curl;
         CURLcode res;
 
@@ -46,7 +46,7 @@ namespace Bioimagery {
         }
         
         // TODO check if we want the null terminator
-        return curlBuffer.c_str();
+        return curlBuffer;
 
     }
 

@@ -34,7 +34,7 @@ namespace Bioimagery {
 
         char url[host.length() + 23 + 10];
         sprintf(url, "http://%s/image/%u/describe", host.c_str(), id);
-        const char* metadataJSON = curlGet(url);
+        const char* metadataJSON = curlGet(url).c_str();
         
         // Parse metadata
         Document document;
@@ -72,7 +72,7 @@ namespace Bioimagery {
         
         char url[host.length() + 19 + 10];
         sprintf(url, "http://%s/image/%u/rois", host.c_str(), id);
-        const char* roiJSON = curlGet(url);
+        const char* roiJSON = curlGet(url).c_str();
 
         // Parse ROIs
         Document document;
@@ -99,7 +99,7 @@ namespace Bioimagery {
 
         char url[host.length() + 14 + 10];
         sprintf(url, "http://%s/image/%u", host.c_str(), id);
-        const char* imageBuffer = curlGet(url);
+        const char* imageBuffer = curlGet(url).data();
 
         // Make an imageheader
 

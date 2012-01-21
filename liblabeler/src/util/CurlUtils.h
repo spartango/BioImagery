@@ -1,9 +1,13 @@
 #ifndef CURLUTIL_H_
 #define CURLUTIL_H_
 
+#include <string>
+
+using namespace std;
+
 namespace Bioimagery {
 	
-	static const char* curlGet(char* url);
+	static string curlGet(char* url);
 
 }
 
