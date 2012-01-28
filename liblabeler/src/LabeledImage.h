@@ -37,15 +37,20 @@ namespace Bioimagery {
         // Populates this image from the host's db
         void load(string host);
 
+        // Gets the image itself
+        void loadImage(string host);
+
+        // Frees the image data from memory
+        void unloadImage();
+
     private:
+        bool loaded;
+
         // Gets image metadata
         void loadMetadata(string host);
 
         // Gets the Rois
         void loadRois(string host);
-
-        // Gets the image itself
-        void loadImage(string host);
     };
 
 } /* namespace Bioimagery */

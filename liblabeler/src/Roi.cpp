@@ -35,9 +35,11 @@ namespace Bioimagery {
     }
 
     void Roi::loadTags(string host) {
-        char url[host.length() + 19 + 10];
-        sprintf(url, "http://%s/image/%u/rois", host.c_str(), id);
-        const char* roiJSON = curlGet(url).c_str();
+        char url[host.length() + 17 + 10];
+        sprintf(url, "http://%s/roi/%u/tags", host.c_str(), id);
+        const char* tagJSON = curlGet(url).c_str();
+        
+
     }
 
     void Roi::loadFromDocument(Value& document) {

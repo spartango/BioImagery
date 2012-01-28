@@ -97,13 +97,19 @@ namespace Bioimagery {
     void LabeledImage::loadImage(string host) {
         // URL: host/image/id
 
-        char url[host.length() + 14 + 10];
-        sprintf(url, "http://%s/image/%u", host.c_str(), id);
-        const char* imageBuffer = curlGet(url).data();
+        if(!loaded) {
+            char url[host.length() + 14 + 10];
+            sprintf(url, "http://%s/image/%u", host.c_str(), id);
+            const char* imageBuffer = curlGet(url).data();
 
-        // Make an imageheader
+            // Make an imageheader
 
-        // Assign this to an image header
+            // Assign this to an image header
+        }
+    }
+
+    void LabeledImage::unloadImage() {
+        
     }
 
 }
