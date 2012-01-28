@@ -53,5 +53,4 @@ namespace Bioimagery {
 
 } /* namespace Bioimagery */
 
-
 #endif /* LABELEDIMAGE_H_ */

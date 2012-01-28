@@ -38,7 +38,22 @@ namespace Bioimagery {
         char url[host.length() + 17 + 10];
         sprintf(url, "http://%s/roi/%u/tags", host.c_str(), id);
         const char* tagJSON = curlGet(url).c_str();
-        
+
+        // Parse metadata
+        Document document;
+        if(document.Parse<0>(tagJSON).HasParseError()) {
+            // Failed to parse
+            fprintf(stderr, "Error Parsing metadata JSON");
+            return;
+        }
+
+        if(document.IsArray()) {
+            tags = new uint32_t[document.Size()];
+
+            for(SizeType i = 0; i < document.Size(); i++) {
+                tags[i] = document[i].GetUint();
+            }
+        }
 
     }
 

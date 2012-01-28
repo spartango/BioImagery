@@ -110,6 +110,7 @@ namespace Bioimagery {
     void LabeledImage::unloadImage() {
         if(image != NULL) { 
             cvReleaseImage(&image);
+            image = NULL;
         }
     }
 
