@@ -1,8 +1,7 @@
-#ifndef IMAGEPROCESSING_H_
-#define IMAGEPROCESSING_H_
+#ifndef IMAGEPROCESSOR_H_
+#define IMAGEPROCESSOR_H_
 
-#include "LabeledImage.h"
-
+#include <LabeledImage.h>
 #include <vector>
 
 using namespace std;
@@ -28,5 +27,5 @@ namespace Bioimagery {
 
 }
 
-#endif /* IMAGEPROCESSING_H_ */
+#endif /* IMAGEPROCESSOR_H_ */
 
