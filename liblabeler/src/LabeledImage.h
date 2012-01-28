@@ -12,19 +12,19 @@ using namespace cv;
 using namespace rapidjson;
 using namespace std;
 
-namespace Bioimagery { 
-    
+namespace Bioimagery {
+
     class LabeledImage {
 
     public:
         LabeledImage(uint32_t t_id);
         virtual ~LabeledImage();
-    
+
         /* data */
         uint32_t id;
 
         string filename;
-        
+
         uint32_t height;
         uint32_t width;
 

@@ -16,7 +16,7 @@ namespace Bioimagery {
 
     LabeledImage::~LabeledImage() {
         if(rois != NULL) {
-            delete rois;
+            delete[] rois;
         }
         if(image != NULL) {
             cvReleaseImage(&image);
@@ -26,7 +26,6 @@ namespace Bioimagery {
     void LabeledImage::load(string host) {
         loadMetadata(host);
         loadRois(host);
-        loadImage(host);
     }
 
     // Helpers
@@ -77,21 +76,19 @@ namespace Bioimagery {
 
         // Parse ROIs
         Document document;
-        if(document.Parse<0>(roiJSON).HasParseError()) {
+        if(document.Parse<0>(roiJSON).HasParseError() || !document.IsArray()) {
             fprintf(stderr, "Error Parsing ROI JSON");
             return;
         }
 
-        // Build a bunch of ROIs
-        if(document.IsArray()) {
-            // Allocate an array to hold the rois
-            rois = new Roi[document.Size()];
+        // Allocate an array to hold the rois
+        rois = new Roi[document.Size()];
 
-            for(SizeType i = 0; i < document.Size(); i++) {
-                // Build an ROI
-                rois[i].loadFromDocument(document[i]);
-            }
+        for(SizeType i = 0; i < document.Size(); i++) {
+            // Build an ROI
+            rois[i].loadFromDocument(document[i]);
         }
+
 
     }
 
