@@ -1,0 +1,113 @@
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/2/trunk/thirdparty/yajl/src
+END
+yajl.c
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/2/trunk/thirdparty/yajl/src/yajl.c
+END
+yajl_buf.h
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/2/trunk/thirdparty/yajl/src/yajl_buf.h
+END
+yajl_version.c
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/2/trunk/thirdparty/yajl/src/yajl_version.c
+END
+yajl_lex.c
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/2/trunk/thirdparty/yajl/src/yajl_lex.c
+END
+yajl_alloc.c
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/2/trunk/thirdparty/yajl/src/yajl_alloc.c
+END
+yajl_parser.c
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/2/trunk/thirdparty/yajl/src/yajl_parser.c
+END
+yajl_lex.h
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/2/trunk/thirdparty/yajl/src/yajl_lex.h
+END
+yajl_encode.c
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/2/trunk/thirdparty/yajl/src/yajl_encode.c
+END
+yajl_bytestack.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/2/trunk/thirdparty/yajl/src/yajl_bytestack.h
+END
+yajl
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/2/trunk/thirdparty/yajl/src/yajl
+END
+yajl_tree.c
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/2/trunk/thirdparty/yajl/src/yajl_tree.c
+END
+yajl_alloc.h
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/2/trunk/thirdparty/yajl/src/yajl_alloc.h
+END
+yajl_parser.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/2/trunk/thirdparty/yajl/src/yajl_parser.h
+END
+yajl_encode.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/2/trunk/thirdparty/yajl/src/yajl_encode.h
+END
+YAJL.dxy
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/2/trunk/thirdparty/yajl/src/YAJL.dxy
+END
+yajl_gen.c
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/2/trunk/thirdparty/yajl/src/yajl_gen.c
+END
+yajl_buf.c
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/2/trunk/thirdparty/yajl/src/yajl_buf.c
+END
+CMakeLists.txt
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/2/trunk/thirdparty/yajl/src/CMakeLists.txt
+END

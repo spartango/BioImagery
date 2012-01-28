@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 28
+/svn/!svn/ver/50/trunk/build
+END
+Doxyfile
+K 25
+svn:wc:ra_dav:version-url
+V 36
+/svn/!svn/ver/2/trunk/build/Doxyfile
+END
+premake
+K 25
+svn:wc:ra_dav:version-url
+V 35
+/svn/!svn/ver/2/trunk/build/premake
+END
+premake4.lua
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/50/trunk/build/premake4.lua
+END
+premake.bat
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/!svn/ver/2/trunk/build/premake.bat
+END

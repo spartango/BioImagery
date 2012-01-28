@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/28/trunk/thirdparty/ultrajson
+END
+ultrajson.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/28/trunk/thirdparty/ultrajson/ultrajson.h
+END
+ultrajsonenc.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/28/trunk/thirdparty/ultrajson/ultrajsonenc.c
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/28/trunk/thirdparty/ultrajson/README
+END
+ultrajsondec.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/28/trunk/thirdparty/ultrajson/ultrajsondec.c
+END

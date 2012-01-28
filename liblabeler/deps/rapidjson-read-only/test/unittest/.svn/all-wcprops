@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 36
+/svn/!svn/ver/48/trunk/test/unittest
+END
+documenttest.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/26/trunk/test/unittest/documenttest.cpp
+END
+jsoncheckertest.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/2/trunk/test/unittest/jsoncheckertest.cpp
+END
+unittest.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/2/trunk/test/unittest/unittest.cpp
+END
+readertest.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/39/trunk/test/unittest/readertest.cpp
+END
+unittest.h
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/2/trunk/test/unittest/unittest.h
+END
+encodingstest.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/46/trunk/test/unittest/encodingstest.cpp
+END
+filestreamtest.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/40/trunk/test/unittest/filestreamtest.cpp
+END
+writertest.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/47/trunk/test/unittest/writertest.cpp
+END
+valuetest.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/29/trunk/test/unittest/valuetest.cpp
+END
+encodedstreamtest.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/48/trunk/test/unittest/encodedstreamtest.cpp
+END

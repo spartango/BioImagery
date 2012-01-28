@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/svn/!svn/ver/2/trunk/thirdparty/jsoncpp
+END
+LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/2/trunk/thirdparty/jsoncpp/LICENSE
+END
+AUTHORS
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/2/trunk/thirdparty/jsoncpp/AUTHORS
+END
+version
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/2/trunk/thirdparty/jsoncpp/version
+END
+README.txt
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/2/trunk/thirdparty/jsoncpp/README.txt
+END

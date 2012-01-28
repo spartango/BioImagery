@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/2/trunk/thirdparty/jsoncpp/include/json
+END
+json.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/2/trunk/thirdparty/jsoncpp/include/json/json.h
+END
+value.h
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/2/trunk/thirdparty/jsoncpp/include/json/value.h
+END
+writer.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/2/trunk/thirdparty/jsoncpp/include/json/writer.h
+END
+features.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/2/trunk/thirdparty/jsoncpp/include/json/features.h
+END
+reader.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/2/trunk/thirdparty/jsoncpp/include/json/reader.h
+END
+config.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/2/trunk/thirdparty/jsoncpp/include/json/config.h
+END
+autolink.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/2/trunk/thirdparty/jsoncpp/include/json/autolink.h
+END
+forwards.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/2/trunk/thirdparty/jsoncpp/include/json/forwards.h
+END

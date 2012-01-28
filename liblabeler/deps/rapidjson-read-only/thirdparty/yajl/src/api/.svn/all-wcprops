@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/2/trunk/thirdparty/yajl/src/api
+END
+yajl_parse.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/2/trunk/thirdparty/yajl/src/api/yajl_parse.h
+END
+yajl_tree.h
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/2/trunk/thirdparty/yajl/src/api/yajl_tree.h
+END
+yajl_version.h.cmake
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/2/trunk/thirdparty/yajl/src/api/yajl_version.h.cmake
+END
+yajl_common.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/2/trunk/thirdparty/yajl/src/api/yajl_common.h
+END
+yajl_gen.h
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/2/trunk/thirdparty/yajl/src/api/yajl_gen.h
+END

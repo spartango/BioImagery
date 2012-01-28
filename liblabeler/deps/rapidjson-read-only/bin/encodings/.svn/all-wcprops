@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 36
+/svn/!svn/ver/42/trunk/bin/encodings
+END
+utf32bebom.json
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/42/trunk/bin/encodings/utf32bebom.json
+END
+utf32be.json
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/42/trunk/bin/encodings/utf32be.json
+END
+utf16bebom.json
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/40/trunk/bin/encodings/utf16bebom.json
+END
+utf16be.json
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/42/trunk/bin/encodings/utf16be.json
+END
+utf32lebom.json
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/42/trunk/bin/encodings/utf32lebom.json
+END
+utf8bom.json
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/40/trunk/bin/encodings/utf8bom.json
+END
+utf16lebom.json
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/40/trunk/bin/encodings/utf16lebom.json
+END
+utf32le.json
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/42/trunk/bin/encodings/utf32le.json
+END
+utf8.json
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/40/trunk/bin/encodings/utf8.json
+END
+utf16le.json
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/42/trunk/bin/encodings/utf16le.json
+END
