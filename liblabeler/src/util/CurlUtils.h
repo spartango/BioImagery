@@ -7,7 +7,7 @@ using namespace std;
 
 namespace Bioimagery {
 	
-	static string curlGet(char* url);
+	string curlGet(char* url);
 
 }
 
