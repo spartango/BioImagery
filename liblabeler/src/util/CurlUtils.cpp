@@ -18,7 +18,7 @@ namespace Bioimagery {
         return size * nmemb;  
     }  
 
-    static string curlGet(char* url) {
+    string curlGet(char* url) {
         CURL *curl;
         CURLcode res;
 
