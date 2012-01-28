@@ -24,4 +24,8 @@ namespace Bioimagery {
         // TODO
     }
 
+    LabeledImage ImageProcessor::processImages() {
+        // By default returns the Identity-- unprocessed image
+        return images[targetIndex];
+    }
 }

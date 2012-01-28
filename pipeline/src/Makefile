@@ -13,12 +13,12 @@ UNAME := $(shell uname)
 all: processor
 
 # Tests for the processor module
-test_processor: test/labeledImageFunctionality.o
-	$(CC) $(CFLAGS) $(LDFLAGS) -llabeler test/labeledImageFunctionality.cpp -o test_liblabeler
+test_processor: test/testProcessor.o
+	$(CC) $(CFLAGS) $(LDFLAGS) test/testProcessor.o -o test_processor
 
 # This is the executable processing pipeline
 processor: $(OBJECT)
-	$(CC) $(CFLAGS) -o liblabeler.so $(OBJECT) $(LDFLAGS)
+	$(CC) $(CFLAGS) -o pipeline $(OBJECT) $(LDFLAGS)
 
 # Compiles cpp to object files
 .cpp.o:
@@ -26,4 +26,4 @@ processor: $(OBJECT)
 
 # Cleans targets
 clean:
-	rm -rf *.o core* liblabeler.so.* test_liblabeler
+	rm -rf *.o core* test_processor pipeline
