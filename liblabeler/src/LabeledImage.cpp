@@ -96,8 +96,7 @@ namespace Bioimagery {
 
     void LabeledImage::loadImage(string host) {
         // URL: host/image/id
-
-        if(!loaded) {
+        if(image == NULL) {
             char url[host.length() + 14 + 10];
             sprintf(url, "http://%s/image/%u", host.c_str(), id);
             const char* imageBuffer = curlGet(url).data();
@@ -109,7 +108,9 @@ namespace Bioimagery {
     }
 
     void LabeledImage::unloadImage() {
-        
+        if(image != NULL) { 
+            cvReleaseImage(&image);
+        }
     }
 
 }

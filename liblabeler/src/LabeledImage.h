@@ -44,8 +44,6 @@ namespace Bioimagery {
         void unloadImage();
 
     private:
-        bool loaded;
-
         // Gets image metadata
         void loadMetadata(string host);
 
