@@ -1,18 +1,18 @@
 CC=g++
-CFLAGS= -Wall
-LDFLAGS = -lcurl
+CFLAGS= -Wall -02
+LDFLAGS = -I/usr/local/include/opencv2 -lcurl -lm -lopencv_core -lopencv_highgui -lopencv_video -lopencv_imgproc -lopencv_gpu -lopencv_calib3d -lopencv_legacy -lopencv_objdetect -lopencv_ml -lopencv_features2d -lopencv_calib3d -lopencv_flann
 
-SRC = 
-OBJECT = 
-ALL = 
+SRC = Roi.cpp util/CurlUtils.cpp LabeledImage.cpp labeledImageFunctionality.cpp
+OBJECT = $(SRC:.cpp=.o)
+EXECUTABLE = labeledImageFunctionality
 
-all: $(ALL)
+all: $(EXECUTABLE)
 
-test: $(OBJECT)
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $^
+$(EXECUTABLE): $(OBJECT)
+	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJECT) -o $@
 
-$(OBJECT): $(SRC)
-	$(CC) $(CFLAGS) $(LDFLAGS) -c $<
+.cpp.o:
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ -c $<
 
 clean:
-	rm -rf *.o core* $(ALL)
+	rm -rf *.o core* $(EXECUTABLE)

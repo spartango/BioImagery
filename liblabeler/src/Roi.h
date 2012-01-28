@@ -2,32 +2,32 @@
 #define ROI_H_
 
 #include <rapidjson/document.h>
-#include <string> 
+#include <string>
 
 using namespace rapidjson;
 using namespace std;
 
-namespace Bioimagery { 
-    
+namespace Bioimagery {
+
     class Roi {
 
     public:
         Roi();
-        Roi(uint32_t id, 
-            int32_t x, 
-            int32_t y, 
-            uint32_t height, 
-            uint32_t width, 
+        Roi(uint32_t id,
+            int32_t x,
+            int32_t y,
+            uint32_t height,
+            uint32_t width,
             uint32_t confidence);
-            
+
         virtual ~Roi();
-    
+
         /* data */
         uint32_t id;
-        
+
         int32_t x;
         int32_t y;
-        
+
         uint32_t height;
         uint32_t width;
 
