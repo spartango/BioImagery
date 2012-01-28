@@ -5,7 +5,7 @@ LIB_FLAGS = -lcurl -lm -lopencv_core -lopencv_highgui -lopencv_video -lopencv_im
 LDFLAGS = -I/usr/local/include/opencv2 $(LIB_FLAGS)
 
 # Source files in the pipeline
-SRC = ImageProcessor.cpp
+SRC = ImageProcessor.cpp Pipeline.cpp
 OBJECT = $(SRC:.cpp=.o)
 
 UNAME := $(shell uname)
@@ -13,8 +13,8 @@ UNAME := $(shell uname)
 all: processor
 
 # Tests for the processor module
-test_processor: test/testProcessor.o
-	$(CC) $(CFLAGS) $(LDFLAGS) test/testProcessor.o -o test_processor
+test_processor: test/TestProcessor.o
+	$(CC) $(CFLAGS) $(LDFLAGS) test/TestProcessor.o -o test_processor
 
 # This is the executable processing pipeline
 processor: $(OBJECT)

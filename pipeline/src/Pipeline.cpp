@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 int main() {
     // This should create the ImageProcessor
     // Fetch it some labeled Images
