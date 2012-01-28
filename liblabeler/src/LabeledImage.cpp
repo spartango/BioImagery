@@ -2,6 +2,7 @@
 #include "util/CurlUtils.h"
 
 #include "opencv2/core/core_c.h"
+#include "opencv2/highgui/highgui_c.h"
 
 
 using namespace cv;
@@ -10,14 +11,14 @@ using namespace rapidjson;
 namespace Bioimagery {
 
     LabeledImage::LabeledImage(uint32_t t_id):id(t_id), image(NULL), rois(NULL){
-        
+
     }
 
     LabeledImage::~LabeledImage() {
         if(rois != NULL) {
             delete rois;
         }
-        if(image != NULL) { 
+        if(image != NULL) {
             cvReleaseImage(&image);
         }
     }
@@ -25,7 +26,7 @@ namespace Bioimagery {
     void LabeledImage::load(string host) {
         loadMetadata(host);
         loadRois(host);
-        loadImage(host);    
+        loadImage(host);
     }
 
     // Helpers
@@ -35,19 +36,19 @@ namespace Bioimagery {
         char url[host.length() + 23 + 10];
         sprintf(url, "http://%s/image/%u/describe", host.c_str(), id);
         const char* metadataJSON = curlGet(url).c_str();
-        
+
         // Parse metadata
         Document document;
         if(document.Parse<0>(metadataJSON).HasParseError()) {
             // Failed to parse
             fprintf(stderr, "Error Parsing metadata JSON");
             return;
-        } 
-         
-        if(document.IsObject() 
-            && document.HasMember("filename") 
-            && document.HasMember("height") 
-            && document.HasMember("width") 
+        }
+
+        if(document.IsObject()
+            && document.HasMember("filename")
+            && document.HasMember("height")
+            && document.HasMember("width")
             && document.HasMember("description")) {
             // We have all the necessary fields
 
@@ -60,7 +61,7 @@ namespace Bioimagery {
             } else {
                 description = "";
             }
-        
+
         } else {
             fprintf(stderr, "Image metadata is missing params");
         }
@@ -69,7 +70,7 @@ namespace Bioimagery {
 
     void LabeledImage::loadRois(string host) {
         // URL: host/image/id/rois
-        
+
         char url[host.length() + 19 + 10];
         sprintf(url, "http://%s/image/%u/rois", host.c_str(), id);
         const char* roiJSON = curlGet(url).c_str();
@@ -79,19 +80,19 @@ namespace Bioimagery {
         if(document.Parse<0>(roiJSON).HasParseError()) {
             fprintf(stderr, "Error Parsing ROI JSON");
             return;
-        } 
-        
+        }
+
         // Build a bunch of ROIs
         if(document.IsArray()) {
             // Allocate an array to hold the rois
             rois = new Roi[document.Size()];
 
             for(SizeType i = 0; i < document.Size(); i++) {
-                // Build an ROI 
-                rois[i].loadFromDocument(document[i]);   
+                // Build an ROI
+                rois[i].loadFromDocument(document[i]);
             }
         }
-        
+
     }
 
     void LabeledImage::loadImage(string host) {
@@ -99,16 +100,21 @@ namespace Bioimagery {
         if(image == NULL) {
             char url[host.length() + 14 + 10];
             sprintf(url, "http://%s/image/%u", host.c_str(), id);
-            const char* imageBuffer = curlGet(url).data();
+            string curlBuffer = curlGet(url);
 
             // Make an imageheader
+            CvMat* matbuf = cvCreateMat(1,curlBuffer.size(),CV_8UC1);
+
+            memcpy(matbuf->data.ptr, curlBuffer.data(), curlBuffer.size());
 
             // Assign this to an image header
+            image = cvDecodeImage(matbuf);
+
         }
     }
 
     void LabeledImage::unloadImage() {
-        if(image != NULL) { 
+        if(image != NULL) {
             cvReleaseImage(&image);
             image = NULL;
         }
