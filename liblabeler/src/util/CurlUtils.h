@@ -11,5 +11,5 @@ namespace Bioimagery {
 
 }
 
-#endif CURLUTIL_H_
+#endif /* CURLUTIL_H_ */
 

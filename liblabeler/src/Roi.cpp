@@ -1,14 +1,15 @@
 #include "Roi.h"
+#include "util/CurlUtils.h"
 
 namespace Bioimagery {
 
-    Roi::Roi():tags(NULL), 
-               id(0), 
+    Roi::Roi():id(0), 
                x(0), 
                y(0), 
                height(0), 
                width(0), 
-               confidence(0) {
+               confidence(0),
+               tags(NULL) {
         
     }
 
@@ -17,13 +18,13 @@ namespace Bioimagery {
              int32_t y, 
              uint32_t height, 
              uint32_t width, 
-             uint32_t confidence):tags(NULL), 
-                                  id(id), 
+             uint32_t confidence):id(id),
                                   x(x), 
                                   y(y), 
                                   height(height), 
                                   width(width), 
-                                  confidence(confidence)  {
+                                  confidence(confidence),
+                                  tags(NULL)  {
         
     }
 
@@ -34,7 +35,9 @@ namespace Bioimagery {
     }
 
     void Roi::loadTags(string host) {
-        
+        char url[host.length() + 19 + 10];
+        sprintf(url, "http://%s/image/%u/rois", host.c_str(), id);
+        const char* roiJSON = curlGet(url).c_str();
     }
 
     void Roi::loadFromDocument(Value& document) {
