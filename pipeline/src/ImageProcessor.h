@@ -20,7 +20,7 @@ namespace Bioimagery {
     // Runs image processing and returns the target image
     virtual LabeledImage processImages();
 
-  private:
+  protected:
     vector<LabeledImage> images;
     int targetIndex;
 
