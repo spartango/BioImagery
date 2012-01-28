@@ -3,23 +3,27 @@
 
 #include "LabeledImage.h"
 
-using namespace LabeledImage
-
 namespace Bioimagery {
 
   class ImageProcessor {
 
   public:
-    ImageProcessor(LabeledImage* allImages, int targetIndex) {
+    ImageProcessor(LabeledImage* allImages, int targetIndex);
 
-    }
-    virtual ~LabeledImage();
+    virtual ~ImageProcessor();
 
     LabeledImage* labeledImages;
 
-    int t_index;
+    int target_index;
 
     // Runs image processing and returns the target image
-    LabeledImage processImages() {}
-  }
+    LabeledImage processImages();
+
+  private:
+
+  };
+
 }
+
+#endif /* IMAGEPROCESSING_H_ */
+
