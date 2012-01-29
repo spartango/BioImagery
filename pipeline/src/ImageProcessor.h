@@ -8,22 +8,22 @@ using namespace std;
 
 namespace Bioimagery {
 
-  class ImageProcessor {
+    class ImageProcessor {
 
-  public:
-    ImageProcessor(vector<LabeledImage> images, int targetIndex);
-    ImageProcessor(LabeledImage *images, int numImages, int targetIndex);
+    public:
+        ImageProcessor(vector<LabeledImage> images, int targetIndex);
+        ImageProcessor(LabeledImage *images, int numImages, int targetIndex);
 
-    virtual ~ImageProcessor();
+        virtual ~ImageProcessor();
 
-    // Runs image processing and returns the target image
-    virtual LabeledImage processImages();
+        // Runs image processing and returns the target image
+        virtual LabeledImage processImages();
 
-  protected:
-    vector<LabeledImage> images;
-    int targetIndex;
+    protected:
+        vector<LabeledImage> images;
+        int targetIndex;
 
-  };
+    };
 
 }
 

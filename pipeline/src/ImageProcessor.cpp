@@ -4,24 +4,23 @@
 using namespace std;
 
 namespace Bioimagery {
-	ImageProcessor::ImageProcessor(vector<LabeledImage> images,
+    ImageProcessor::ImageProcessor(vector<LabeledImage> images,
                                    int targetIndex):
                                    images(images),
                                    targetIndex(targetIndex) {
-
     }
 
-    ImageProcessor::ImageProcessor(LabeledImage *images,
+    ImageProcessor::ImageProcessor(LabeledImage *targetImages,
                                    int numImages,
                                    int targetIndex):
                                    targetIndex(targetIndex) {
         // For each Image add to a new vector;
-        // TODO
+        for(int i = 0; i<numImages; i++) {
+            images.push_back(targetImages[i]);
+        }
     }
 
     ImageProcessor::~ImageProcessor() {
-        // Clean up the images and image vector
-        // TODO
     }
 
     LabeledImage ImageProcessor::processImages() {

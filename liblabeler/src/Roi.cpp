@@ -9,8 +9,7 @@ namespace Bioimagery {
                y(0),
                height(0),
                width(0),
-               confidence(0),
-               tags(NULL) {
+               confidence(0) {
 
     }
 
@@ -25,15 +24,12 @@ namespace Bioimagery {
              y(y),
              height(height),
              width(width),
-             confidence(confidence),
-             tags(NULL)  {
+             confidence(confidence) {
 
     }
 
     Roi::~Roi() {
-        if(tags != NULL) {
-            delete tags;
-        }
+
     }
 
     void Roi::loadTags(string host) {
@@ -49,10 +45,8 @@ namespace Bioimagery {
             return;
         }
 
-        tags = new uint32_t[document.Size()];
-
         for(SizeType i = 0; i < document.Size(); i++) {
-            tags[i] = document[i].GetUint();
+            tags.push_back(document[i].GetUint());
         }
     }
 
