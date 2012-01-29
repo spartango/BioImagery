@@ -10,7 +10,10 @@ using namespace rapidjson;
 
 namespace Bioimagery {
 
-    LabeledImage::LabeledImage(uint32_t t_id):id(t_id), image(NULL), rois(NULL){
+    LabeledImage::LabeledImage(uint32_t t_id):
+                              id(t_id),
+                              image(NULL),
+                              rois(NULL){
 
     }
 

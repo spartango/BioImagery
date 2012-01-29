@@ -3,6 +3,7 @@
 
 #include <rapidjson/document.h>
 #include <string>
+#include <vector>
 
 using namespace rapidjson;
 using namespace std;
@@ -34,7 +35,7 @@ namespace Bioimagery {
         uint32_t confidence;
 
         // Tag ids
-        uint32_t *tags;
+        vector<uint32_t> tags;
 
         void loadTags(string host);
 
