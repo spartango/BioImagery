@@ -14,7 +14,7 @@ int main() {
     vector<LabeledImage*> targetImages;
 
     // Fetch it some labeled Images
-    for(int i = 0; i < NUM_IMAGES; i++) {
+    for(int i = 1; i < NUM_IMAGES; i++) {
         LabeledImage *newImage = new LabeledImage(i);
         newImage->load(LABEL_HOST);
         targetImages.push_back(newImage);
@@ -33,6 +33,5 @@ int main() {
     for(int i = 0; i < targetImages.size(); i++) {
         delete targetImages[i];
     }
-
 
 }
