@@ -4,13 +4,13 @@
 using namespace std;
 
 namespace Bioimagery {
-    ImageProcessor::ImageProcessor(vector<LabeledImage> images,
+    ImageProcessor::ImageProcessor(vector<LabeledImage*> images,
                                    int targetIndex):
                                    images(images),
                                    targetIndex(targetIndex) {
     }
 
-    ImageProcessor::ImageProcessor(LabeledImage *targetImages,
+    ImageProcessor::ImageProcessor(LabeledImage **targetImages,
                                    int numImages,
                                    int targetIndex):
                                    targetIndex(targetIndex) {
@@ -23,7 +23,7 @@ namespace Bioimagery {
     ImageProcessor::~ImageProcessor() {
     }
 
-    LabeledImage ImageProcessor::processImages() {
+    LabeledImage* ImageProcessor::processImages() {
         // By default returns the Identity-- unprocessed image
         return images[targetIndex];
     }

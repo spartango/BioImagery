@@ -11,16 +11,16 @@ namespace Bioimagery {
     class ImageProcessor {
 
     public:
-        ImageProcessor(vector<LabeledImage> images, int targetIndex);
-        ImageProcessor(LabeledImage *images, int numImages, int targetIndex);
+        ImageProcessor(vector<LabeledImage*> images, int targetIndex);
+        ImageProcessor(LabeledImage **images, int numImages, int targetIndex);
 
         virtual ~ImageProcessor();
 
         // Runs image processing and returns the target image
-        virtual LabeledImage processImages();
+        virtual LabeledImage* processImages();
 
     protected:
-        vector<LabeledImage> images;
+        vector<LabeledImage*> images;
         int targetIndex;
 
     };
