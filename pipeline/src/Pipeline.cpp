@@ -28,7 +28,7 @@ int main() {
 
     // Run the processor
     preprocessor.processImages();
-    morphprocessor.processImages();
+    LabeledImage* result = morphprocessor.processImages();
 
     // Score the output
     printf("TODO: implement scoring around Image Processors\n");
