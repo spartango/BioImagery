@@ -12,12 +12,14 @@ namespace Bioimagery {
     class MorphologyProcessor : public ImageProcessor {
 
     public:
-        MorphologyProcessor(vector<LabeledImage*> images, int targetIndex);
-        MorphologyProcessor(LabeledImage** images, int numImages, int targetIndex);
+        MorphologyProcessor(vector<LabeledImage*> images, int targetIndex, int iterations);
+        MorphologyProcessor(LabeledImage** images, int numImages, int targetIndex, int iterations);
 
         // Runs image processing and returns the target image
         virtual LabeledImage* processImages();
-    
+
+    private:
+        int iterations;
     };
 
 }

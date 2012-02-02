@@ -24,7 +24,7 @@ int main() {
 
     // This should create the ImageProcessor
     GPreProcessor preprocessor(targetImages, 0, 5, 5, 1.0, 1.0);
-    MorphologyProcessor morphprocessor(targetImages, 0);
+    MorphologyProcessor morphprocessor(targetImages, 0, 1);
 
     // Run the processor
     preprocessor.processImages();

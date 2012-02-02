@@ -7,11 +7,18 @@ using namespace cv;
 
 namespace Bioimagery {
 
-    MorphologyProcessor::MorphologyProcessor(vector<LabeledImage*> images, int targetIndex) : ImageProcessor(images, targetIndex) {
+    MorphologyProcessor::MorphologyProcessor(vector<LabeledImage*> images, 
+                                             int targetIndex, 
+                                             int iterations) : ImageProcessor(images, targetIndex), 
+                                                               iterations(iterations) {
 
     }
 
-    MorphologyProcessor::MorphologyProcessor(LabeledImage** images, int numImages, int targetIndex): ImageProcessor(images, numImages, targetIndex) {
+    MorphologyProcessor::MorphologyProcessor(LabeledImage** images, 
+                                             int numImages, 
+                                             int targetIndex, 
+                                             int iterations): ImageProcessor(images, numImages, targetIndex), 
+                                                              iterations(iterations) {
 
     }
 
@@ -20,7 +27,7 @@ namespace Bioimagery {
         images[targetIndex]->loadImage("proto.melamp.us");
         
         // Close the target image
-        cvMorphologyEx(images[targetIndex]->image, images[targetIndex]->image, NULL, NULL, CV_MOP_CLOSE, 1);
+        cvMorphologyEx(images[targetIndex]->image, images[targetIndex]->image, NULL, NULL, CV_MOP_OPEN, iterations);
         
         return images[targetIndex];
     }
