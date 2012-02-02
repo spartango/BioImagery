@@ -27,7 +27,7 @@ namespace Bioimagery {
         images[targetIndex]->loadImage("proto.melamp.us");
         
         // Close the target image
-        cvMorphologyEx(images[targetIndex]->image, images[targetIndex]->image, NULL, NULL, CV_MOP_OPEN, iterations);
+        cvMorphologyEx(images[targetIndex]->image, images[targetIndex]->image, NULL, NULL, CV_MOP_CLOSE, iterations);
         
         return images[targetIndex];
     }

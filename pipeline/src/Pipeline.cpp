@@ -26,15 +26,15 @@ int main() {
     GPreProcessor preprocessor(targetImages, 0, 5, 5, 1.0, 1.0);
     MorphologyProcessor morphprocessor(targetImages, 0, 1);
 
-    // Run the processor
+    // Run the processors
     preprocessor.processImages();
-    LabeledImage* result = morphprocessor.processImages();
+    morphprocessor.processImages();
 
     // Score the output
     printf("TODO: implement scoring around Image Processors\n");
 
     // Display the processed image
-    cvShowImage("Processed", result->image);
+    cvShowImage("Processed", targetImages[0]->image);
     cvWaitKey();
 
     // Clean up Images
