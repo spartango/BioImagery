@@ -21,8 +21,8 @@ namespace Bioimagery {
     }
 
     GPreProcessor::GPreProcessor(LabeledImage** images, 
-                                 int targetIndex,
-                                 int numImages, 
+                                 int numImages,
+                                 int targetIndex, 
                                  int filter_width, 
                                  int filter_height, 
                                  double sigma_x,
@@ -37,8 +37,10 @@ namespace Bioimagery {
     LabeledImage* GPreProcessor::processImages() {
         // Make sure we load the target image
         images[targetIndex]->loadImage("proto.melamp.us");
+        
         // Gaussian Smooth the target image
         cvSmooth(images[targetIndex]->image, images[targetIndex]->image, CV_GAUSSIAN, filter_width, filter_height, sigma_x, sigma_y);
+        
         return images[targetIndex];
     }
 }

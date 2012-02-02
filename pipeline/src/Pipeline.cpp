@@ -4,6 +4,7 @@
 #include <opencv2/highgui/highgui_c.h>
 
 #include "GPreProcessor.h"
+#include "MorphologyProcessor.h"
 
 #define NUM_IMAGES 8
 #define LABEL_HOST "proto.melamp.us"
@@ -22,10 +23,12 @@ int main() {
     }
 
     // This should create the ImageProcessor
-    GPreProcessor processor(targetImages, 0, 5, 5, 0, 0);
+    GPreProcessor preprocessor(targetImages, 0, 5, 5, 1.0, 1.0);
+    MorphologyProcessor morphprocessor(targetImages, 0);
 
     // Run the processor
-    LabeledImage* result = processor.processImages();
+    preprocessor.processImages();
+    morphprocessor.processImages();
 
     // Score the output
     printf("TODO: implement scoring around Image Processors\n");
