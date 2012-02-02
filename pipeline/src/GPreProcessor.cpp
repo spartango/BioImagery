@@ -1,6 +1,6 @@
 #include "GPreProcessor.h"
 #include <LabeledImage.h>
-#include <opencv2/imgproc/imgproc.h>
+#include <opencv2/imgproc/imgproc_c.h>
 
 using namespace std;
 using namespace cv;
@@ -36,7 +36,7 @@ namespace Bioimagery {
 
     LabeledImage* GPreProcessor::processImages() {
         // Gaussian Smooth the target image
-        cvSmooth(images[targetIndex].image, images[targetIndex].image, CV_GAUSSIAN, filter_width, filter_height, sigma_x, sigma_y);
+        cvSmooth(images[targetIndex]->image, images[targetIndex]->image, CV_GAUSSIAN, filter_width, filter_height, sigma_x, sigma_y);
         return images[targetIndex];
     }
 }
