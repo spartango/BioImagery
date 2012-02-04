@@ -7,6 +7,7 @@
 #include "MorphologyProcessor.h"
 #include "ThresholdProcessor.h"
 #include "ContourProcessor.h"
+#include "PyramidSegProcessor.h"
 
 #define NUM_IMAGES 8
 #define TARGET 1
@@ -26,14 +27,19 @@ int main() {
     }
 
     // This should create the ImageProcessor
-    GPreProcessor preprocessor(targetImages, TARGET, 5, 5, 1.0, 1.0);
     /*
     MorphologyProcessor morphprocessor(targetImages, TARGET, 1);
     ThresholdProcessor threshprocessor(targetImages, TARGET, 127.0);
 
     // Run the processors
     morphprocessor.processImages();
+
+    PyramidSegProcessor segproc (targetImages, TARGET, 20, 5);
+
+    segproc.processImages();
     */
+    GPreProcessor preprocessor(targetImages, TARGET, 5, 5, 1.0, 1.0);
+
     preprocessor.processImages();
 
     ContourProcessor contourprocessor(targetImages, TARGET, 100);
