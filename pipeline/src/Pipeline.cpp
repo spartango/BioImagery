@@ -6,6 +6,7 @@
 #include "GPreProcessor.h"
 #include "MorphologyProcessor.h"
 #include "ThresholdProcessor.h"
+#include "ContourProcessor.h"
 
 #define NUM_IMAGES 8
 #define TARGET 1
@@ -26,12 +27,18 @@ int main() {
 
     // This should create the ImageProcessor
     GPreProcessor preprocessor(targetImages, TARGET, 5, 5, 1.0, 1.0);
+    /*
     MorphologyProcessor morphprocessor(targetImages, TARGET, 1);
     ThresholdProcessor threshprocessor(targetImages, TARGET, 127.0);
 
     // Run the processors
-    preprocessor.processImages();
     morphprocessor.processImages();
+    */
+    preprocessor.processImages();
+
+    ContourProcessor contourprocessor(targetImages, TARGET, 100);
+
+    contourprocessor.processImages();
 
     // Score the output
     printf("TODO: implement scoring around Image Processors\n");

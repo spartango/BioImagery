@@ -7,17 +7,17 @@ using namespace cv;
 
 namespace Bioimagery {
 
-    ThresholdProcessor::ThresholdProcessor(vector<LabeledImage*> images, 
-                                             int targetIndex, 
-                                             double threshold) : ImageProcessor(images, targetIndex), 
+    ThresholdProcessor::ThresholdProcessor(vector<LabeledImage*> images,
+                                             int targetIndex,
+                                             double threshold) : ImageProcessor(images, targetIndex),
                                                                  threshold(threshold) {
 
     }
 
-    ThresholdProcessor::ThresholdProcessor(LabeledImage** images, 
-                                             int numImages, 
-                                             int targetIndex, 
-                                             double threshold): ImageProcessor(images, numImages, targetIndex), 
+    ThresholdProcessor::ThresholdProcessor(LabeledImage** images,
+                                             int numImages,
+                                             int targetIndex,
+                                             double threshold): ImageProcessor(images, numImages, targetIndex),
                                                                 threshold(threshold) {
 
     }
@@ -25,10 +25,10 @@ namespace Bioimagery {
     LabeledImage* ThresholdProcessor::processImages() {
         // Make sure we load the target image
         images[targetIndex]->loadImage("proto.melamp.us");
-        
+
         // Create a target
-        IplImage* newImage = cvCreateImage(cvSize(images[targetIndex]->image->width, images[targetIndex]->image->height), 
-                     images[targetIndex]->image->depth, 
+        IplImage* newImage = cvCreateImage(cvSize(images[targetIndex]->image->width, images[targetIndex]->image->height),
+                     images[targetIndex]->image->depth,
                      1);
 
         // Get to the right colorspace
