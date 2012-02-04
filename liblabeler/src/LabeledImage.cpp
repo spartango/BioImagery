@@ -18,9 +18,12 @@ namespace Bioimagery {
     }
 
     LabeledImage::~LabeledImage() {
-        if(rois != NULL) {
-            delete[] rois;
-        }
+        for(int i=0; i < rois.size(); i++) {
+            delete rois[0];
+        } 
+        
+        rois.clear();
+
         if(image != NULL) {
             cvReleaseImage(&image);
         }
@@ -84,12 +87,11 @@ namespace Bioimagery {
             return;
         }
 
-        // Allocate an array to hold the rois
-        rois = new Roi[document.Size()];
-
-        for(SizeType i = 0; i < document.Size(); i++) {
+        for(int i = 0; i < document.Size(); i++) {
             // Build an ROI
-            rois[i].loadFromDocument(document[i]);
+            Roi *roi = new Roi();
+            roi->loadFromDocument(document[i]);
+            rois.push_back(roi);
         }
 
 

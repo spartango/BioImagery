@@ -25,20 +25,16 @@ int main() {
         targetImages.push_back(newImage);
     }
 
+    // Coalesce labels
+    printf("TODO: Coalesce labels\n");
+
     // This should create the ImageProcessor
     GPreProcessor preprocessor(targetImages, TARGET, 5, 5, 1.0, 1.0);
-    /*
-    MorphologyProcessor morphprocessor(targetImages, TARGET, 1);
-    ThresholdProcessor threshprocessor(targetImages, TARGET, 127.0);
 
-    // Run the processors
-    morphprocessor.processImages();
-    */
+    // Run the preprocessor
     preprocessor.processImages();
-
-    ContourProcessor contourprocessor(targetImages, TARGET, 100);
-
-    contourprocessor.processImages();
+    // Run the feature extractor
+    
 
     // Score the output
     printf("TODO: implement scoring around Image Processors\n");
