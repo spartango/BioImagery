@@ -18,7 +18,7 @@ namespace Bioimagery {
     }
 
     LabeledImage::~LabeledImage() {
-        for(int i=0; i < rois.size(); i++) {
+        for(uint32_t i=0; i < rois.size(); i++) {
             delete rois[0];
         } 
         
@@ -87,7 +87,7 @@ namespace Bioimagery {
             return;
         }
 
-        for(int i = 0; i < document.Size(); i++) {
+        for(uint32_t i = 0; i < document.Size(); i++) {
             // Build an ROI
             Roi *roi = new Roi();
             roi->loadFromDocument(document[i]);

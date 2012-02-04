@@ -7,6 +7,7 @@
 #include "MorphologyProcessor.h"
 #include "ThresholdProcessor.h"
 #include "ContourProcessor.h"
+#include "RoiBuildingProcessor.h"
 
 #define NUM_IMAGES 8
 #define TARGET 1
@@ -29,12 +30,16 @@ int main() {
     printf("TODO: Coalesce labels\n");
 
     // This should create the ImageProcessor
-    GPreProcessor preprocessor(targetImages, TARGET, 5, 5, 1.0, 1.0);
-
+    GPreProcessor        preprocessor(targetImages, TARGET, 5, 5, 1.0, 1.0);
+    RoiBuildingProcessor roibuilder();
+    
     // Run the preprocessor
     preprocessor.processImages();
+
     // Run the feature extractor
-    
+
+    // Run the ROI builder
+
 
     // Score the output
     printf("TODO: implement scoring around Image Processors\n");
