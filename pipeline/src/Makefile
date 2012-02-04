@@ -5,7 +5,7 @@ LIB_FLAGS = -lcurl -lm -lopencv_core -lopencv_highgui -lopencv_video -lopencv_im
 LDFLAGS = -I/usr/local/include/opencv2 $(LIB_FLAGS)
 
 # Source files in the pipeline
-SRC = ImageProcessor.cpp Pipeline.cpp GPreProcessor.cpp MorphologyProcessor.cpp
+SRC = ImageProcessor.cpp Pipeline.cpp GPreProcessor.cpp MorphologyProcessor.cpp ThresholdProcessor.cpp	
 OBJECT = $(SRC:.cpp=.o)
 
 UNAME := $(shell uname)

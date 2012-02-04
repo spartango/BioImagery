@@ -28,7 +28,8 @@ namespace Bioimagery {
         
         // Close the target image
         cvMorphologyEx(images[targetIndex]->image, images[targetIndex]->image, NULL, NULL, CV_MOP_CLOSE, iterations);
-        
+        cvSmooth(images[targetIndex]->image, images[targetIndex]->image, CV_GAUSSIAN);
+
         return images[targetIndex];
     }
 }

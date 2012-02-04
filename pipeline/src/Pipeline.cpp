@@ -5,8 +5,10 @@
 
 #include "GPreProcessor.h"
 #include "MorphologyProcessor.h"
+#include "ThresholdProcessor.h"
 
 #define NUM_IMAGES 8
+#define TARGET 1
 #define LABEL_HOST "proto.melamp.us"
 
 using namespace std;
@@ -23,8 +25,9 @@ int main() {
     }
 
     // This should create the ImageProcessor
-    GPreProcessor preprocessor(targetImages, 0, 5, 5, 1.0, 1.0);
-    MorphologyProcessor morphprocessor(targetImages, 0, 1);
+    GPreProcessor preprocessor(targetImages, TARGET, 5, 5, 1.0, 1.0);
+    MorphologyProcessor morphprocessor(targetImages, TARGET, 1);
+    ThresholdProcessor threshprocessor(targetImages, TARGET, 127.0);
 
     // Run the processors
     preprocessor.processImages();
@@ -34,7 +37,7 @@ int main() {
     printf("TODO: implement scoring around Image Processors\n");
 
     // Display the processed image
-    cvShowImage("Processed", targetImages[0]->image);
+    cvShowImage("Processed", targetImages[TARGET]->image);
     cvWaitKey();
 
     // Clean up Images
