@@ -27,3 +27,6 @@ processor: $(OBJECT)
 # Cleans targets
 clean:
 	rm -rf *.o core* test_processor pipeline
+
+run: processor
+	./pipeline
