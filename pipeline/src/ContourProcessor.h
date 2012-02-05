@@ -14,6 +14,9 @@ namespace Bioimagery {
     public:
         ContourProcessor(vector<LabeledImage*> images, int targetIndex, double threshold);
         ContourProcessor(LabeledImage** images, int numImages, int targetIndex, double threshold);
+        virtual ~ContourProcessor();
+        
+        vector<Roi*> rois;
 
         // Runs image processing and returns the target image
         virtual LabeledImage* processImages();
