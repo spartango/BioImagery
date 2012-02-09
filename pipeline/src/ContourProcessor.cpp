@@ -37,17 +37,33 @@ namespace Bioimagery {
     
     // Will be Feature boxes
     CvConnectedComp *components = 0;
-    
-    // Raster across the image
-    // TODO
 
-    // Select a color: TODO
-    CvScalar color = CV_RGB(0,0,0);
+    // Create a binary map 
+    IplImage* map = cvCreateImage(cvSize(images[targetIndex]->width, images[targetIndex]->width), IPL_DEPTH_8U, 1);
 
-    cvFloodFill(images[targetIndex]->image, cvPoint(0, 0), color, cvScalarAll(threshold), cvScalarAll(threshold), components);
+    // Mark unsolved positions
+    memset(map->imageData, UNOCCUPIED, map->imageSize);
 
-    // Copy the component to a map
-    // TODO
+    // Raster across the map
+    for(int y = 0; y < map->height; y++) {
+
+      uchar *ptr = (uchar*) (map->imageData + y*map->widthStep);
+
+      for(int x = 0; x < map->width; x++) {
+        if(ptr[x] == UNOCCUPIED) {
+          // if position unsolved
+
+          // Select a color: TODO
+          CvScalar color;// = nextColor();
+
+          cvFloodFill(images[targetIndex]->image, cvPoint(x, y), color, cvScalarAll(threshold), cvScalarAll(threshold), components);
+
+            // Copy the component to a map
+            // TODO
+        }
+      }
+    }
+
 
     // Store the ROI boxes
     // TODO
