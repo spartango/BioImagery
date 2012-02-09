@@ -94,16 +94,23 @@ namespace Bioimagery {
     }
 
     // Draw ROIs
+    drawRois();
+
+    printf("Floodfilling complete\n");
+
+    //cvShowImage("Map", map);
+    cvReleaseImage(&map);
+    cvReleaseImage(&workingCopy);
+
+    return images[targetIndex];
+  }
+
+  void ContourProcessor::drawRois() {
     for(int i = 0; i < rois.size(); i++) {
       cvRectangle(images[targetIndex]->image, 
                         cvPoint(rois[i]->x, rois[i]->y), 
                         cvPoint(rois[i]->x + rois[i]->width, rois[i]->y + rois[i]->height), 
                         CV_RGB(255 * rand(), 255 * rand(), 255 * rand()));
     }
-
-    printf("Floodfilling complete\n");
-    
-    //cvShowImage("Map", map);
-    return images[targetIndex];
   }
 }

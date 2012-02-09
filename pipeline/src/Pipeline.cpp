@@ -10,7 +10,7 @@
 #include "RoiBuildingProcessor.h"
 
 #define NUM_IMAGES 8
-#define TARGET 1
+#define TARGET 6
 #define LABEL_HOST "proto.melamp.us"
 
 using namespace std;
