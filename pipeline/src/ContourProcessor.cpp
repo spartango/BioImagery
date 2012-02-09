@@ -48,6 +48,9 @@ namespace Bioimagery {
     // Mark unsolved positions
     memset(map->imageData, UNOCCUPIED, map->imageSize);
 
+    // Make a working copy of the image
+    IplImage* workingCopy = cvCreateImage(cvGetSize(images[targetIndex]->image), images[targetIndex]->image->depth, images[targetIndex]->image->nChannels);
+
     // Raster across the map
     for(int y = 0; y < map->height; y+=rasterIncrement) {
 
@@ -56,7 +59,7 @@ namespace Bioimagery {
       for(int x = 0; x < map->width; x+=rasterIncrement) {
         //printf("%d|", ptr[x]);
 
-        if(ptr[x] != OCCUPIED) {
+        if(ptr[x] == UNOCCUPIED) {
           // if position unsolved
 
           // Select a color:
@@ -64,16 +67,24 @@ namespace Bioimagery {
           
           // Will be Feature boxes
           CvConnectedComp component;
-          
-          cvFloodFill(images[targetIndex]->image, cvPoint(x, y), color, cvScalarAll(threshold), cvScalarAll(threshold), &component);
+
+          // Try a flood fill    
+          cvCopy(images[targetIndex]->image, workingCopy);
+
+          cvFloodFill(workingCopy, cvPoint(x, y), color, cvScalarAll(threshold), cvScalarAll(threshold), &component);
 
           // Store the ROI box
           if(component.rect.width > 1 
             && component.rect.height > 1 
             && component.rect.width != map->width 
             && component.rect.height != map->height) {
-            // Copy the component to a map
-            cvDrawContours(map, component.contour, cvScalar(OCCUPIED), cvScalar(OCCUPIED), 1, CV_FILLED);
+
+            //Copy the component to a map 
+            cvRectangle(map, 
+                        cvPoint(component.rect.x, component.rect.y), 
+                        cvPoint(component.rect.x + component.rect.width, component.rect.y + component.rect.height), 
+                        cvScalar(OCCUPIED), CV_FILLED);
+
             Roi* newRoi = new Roi(0, component.rect.x, component.rect.y, component.rect.height, component.rect.width, 100);
             rois.push_back(newRoi);
             printf("ROI created: (%d, %d) => %d, %d of %d x %d\n", x, y, newRoi->x, newRoi->y, newRoi->width, newRoi->height);
@@ -82,8 +93,17 @@ namespace Bioimagery {
       }
     }
 
-    printf("Floodfilling complete\n");
+    // Draw ROIs
+    for(int i = 0; i < rois.size(); i++) {
+      cvRectangle(images[targetIndex]->image, 
+                        cvPoint(rois[i]->x, rois[i]->y), 
+                        cvPoint(rois[i]->x + rois[i]->width, rois[i]->y + rois[i]->height), 
+                        CV_RGB(255 * rand(), 255 * rand(), 255 * rand()));
+    }
 
+    printf("Floodfilling complete\n");
+    
+    //cvShowImage("Map", map);
     return images[targetIndex];
   }
 }

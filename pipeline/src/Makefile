@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS= -g -Wall -O0
+CFLAGS= -g -Wall -O2
 LIB_FLAGS = -lcurl -lm -lopencv_core -lopencv_highgui -lopencv_video -lopencv_imgproc -lopencv_gpu -lopencv_calib3d -lopencv_legacy -lopencv_objdetect -lopencv_ml -lopencv_features2d -lopencv_calib3d -lopencv_flann -llabeler
 
 LDFLAGS = -I/usr/local/include/opencv2 $(LIB_FLAGS)

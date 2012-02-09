@@ -24,10 +24,9 @@ namespace Bioimagery {
         static const uint8_t OCCUPIED   = 255;
         static const uint8_t UNOCCUPIED = 0;
 
+    private:
         double threshold;
         int rasterIncrement;
-
-    private:
 
     };
 
