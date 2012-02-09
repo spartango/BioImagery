@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS= -Wall -02
+CFLAGS= -g -Wall -02
 
 # Linker flags
 LIB_FLAGS = -lcurl -lm -lopencv_core -lopencv_highgui -lopencv_video -lopencv_imgproc -lopencv_gpu -lopencv_calib3d -lopencv_legacy -lopencv_objdetect -lopencv_ml -lopencv_features2d -lopencv_calib3d -lopencv_flann

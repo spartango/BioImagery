@@ -30,8 +30,8 @@ int main() {
     printf("TODO: Coalesce labels\n");
 
     // This should create the ImageProcessor
-    GPreProcessor    preprocessor(targetImages, TARGET, 5, 5, 1.0, 1.0);
-    ContourProcessor contourprocessor(targetImages, TARGET, 20);
+    GPreProcessor    preprocessor(targetImages, TARGET, 3, 3, 1.0, 1.0);
+    ContourProcessor contourprocessor(targetImages, TARGET, 8, 20);
     
     // Run the preprocessor
     preprocessor.processImages();

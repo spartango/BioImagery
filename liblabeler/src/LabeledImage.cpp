@@ -19,7 +19,7 @@ namespace Bioimagery {
 
     LabeledImage::~LabeledImage() {
         for(uint32_t i=0; i < rois.size(); i++) {
-            delete rois[0];
+            delete rois[i];
         } 
         
         rois.clear();

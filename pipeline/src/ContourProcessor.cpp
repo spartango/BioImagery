@@ -15,21 +15,25 @@ namespace Bioimagery {
 
   ContourProcessor::ContourProcessor(vector<LabeledImage*> images,
                                      int targetIndex,
-                                     double threshold) : ImageProcessor(images, targetIndex),
-                                                         threshold(threshold) {
+                                     double threshold, 
+                                     int rasterIncrement) : ImageProcessor(images, targetIndex),
+                                                         threshold(threshold),
+                                                         rasterIncrement(rasterIncrement) {
 
   }
 
   ContourProcessor::ContourProcessor(LabeledImage** images,
                                      int numImages,
                                      int targetIndex,
-                                     double threshold): ImageProcessor(images, numImages, targetIndex),
-                                                        threshold(threshold) {
+                                     double threshold,
+                                     int rasterIncrement): ImageProcessor(images, numImages, targetIndex),
+                                                        threshold(threshold),
+                                                        rasterIncrement(rasterIncrement) {
 
   }
 
   ContourProcessor::~ContourProcessor() {
-    for(int i=0; i<rois.size(); i++) {
+    for(uint32_t i=0; i<rois.size(); i++) {
       delete rois[i];
     }
     rois.clear();
@@ -39,18 +43,17 @@ namespace Bioimagery {
     images[targetIndex]->loadImage("proto.melamp.us");
     
     // Create a binary map 
-    IplImage* map = cvCreateImage(cvSize(images[targetIndex]->width, images[targetIndex]->height), IPL_DEPTH_8U, 1);
-    printf("Map created %d x %d\n", map->width, map->height);
-
+    IplImage* map = cvCreateImage(cvGetSize(images[targetIndex]->image), IPL_DEPTH_8U, 1);
+    printf("Map created %d x %d -> %ub\n", map->width, map->height, map->imageSize);
     // Mark unsolved positions
     memset(map->imageData, UNOCCUPIED, map->imageSize);
 
     // Raster across the map
-    for(int y = 0; y < map->height; y++) {
+    for(int y = 0; y < map->height; y+=rasterIncrement) {
 
       uchar *ptr = (uchar*) (map->imageData + y*map->widthStep);
 
-      for(int x = 0; x < map->width; x++) {
+      for(int x = 0; x < map->width; x+=rasterIncrement) {
         //printf("%d|", ptr[x]);
 
         if(ptr[x] != OCCUPIED) {
@@ -60,18 +63,21 @@ namespace Bioimagery {
           CvScalar color = CV_RGB(255 * rand(), 255 * rand(), 255 * rand());
           
           // Will be Feature boxes
-          CvConnectedComp *components = 0;
+          CvConnectedComp component;
           
-          cvFloodFill(images[targetIndex]->image, cvPoint(x, y), color, cvScalarAll(threshold), cvScalarAll(threshold), components);
-
-          // Copy the component to a map
-          cvDrawContours(map, components->contour, cvScalar(OCCUPIED), cvScalar(OCCUPIED), 1);
+          cvFloodFill(images[targetIndex]->image, cvPoint(x, y), color, cvScalarAll(threshold), cvScalarAll(threshold), &component);
 
           // Store the ROI box
-          Roi* newRoi = new Roi(1, components->rect.x, components->rect.y, components->rect.height, components->rect.width, 100);
-          rois.push_back(newRoi);
-
-          printf("ROI created: %d, %d %d x %d\n", newRoi->x, newRoi->y, newRoi->width, newRoi->height);
+          if(component.rect.width > 1 
+            && component.rect.height > 1 
+            && component.rect.width != map->width 
+            && component.rect.height != map->height) {
+            // Copy the component to a map
+            cvDrawContours(map, component.contour, cvScalar(OCCUPIED), cvScalar(OCCUPIED), 1, CV_FILLED);
+            Roi* newRoi = new Roi(0, component.rect.x, component.rect.y, component.rect.height, component.rect.width, 100);
+            rois.push_back(newRoi);
+            printf("ROI created: (%d, %d) => %d, %d of %d x %d\n", x, y, newRoi->x, newRoi->y, newRoi->width, newRoi->height);
+          }
         } 
       }
     }

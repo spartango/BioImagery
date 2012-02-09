@@ -12,8 +12,8 @@ namespace Bioimagery {
     class ContourProcessor : public ImageProcessor {
 
     public:
-        ContourProcessor(vector<LabeledImage*> images, int targetIndex, double threshold);
-        ContourProcessor(LabeledImage** images, int numImages, int targetIndex, double threshold);
+        ContourProcessor(vector<LabeledImage*> images, int targetIndex, double threshold, int rasterIncrement);
+        ContourProcessor(LabeledImage** images, int numImages, int targetIndex, double threshold, int rasterIncrement);
         virtual ~ContourProcessor();
         
         vector<Roi*> rois;
@@ -21,10 +21,14 @@ namespace Bioimagery {
         // Runs image processing and returns the target image
         virtual LabeledImage* processImages();
 
-        static const uint8_t OCCUPIED   = 0;
-        static const uint8_t UNOCCUPIED = 255;
-    private:
+        static const uint8_t OCCUPIED   = 255;
+        static const uint8_t UNOCCUPIED = 0;
+
         double threshold;
+        int rasterIncrement;
+
+    private:
+
     };
 
 }
