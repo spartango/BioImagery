@@ -21,6 +21,8 @@ namespace Bioimagery {
         // Runs image processing and returns the target image
         virtual LabeledImage* processImages();
 
+        static const uint8_t OCCUPIED   = 0;
+        static const uint8_t UNOCCUPIED = 255;
     private:
         double threshold;
     };

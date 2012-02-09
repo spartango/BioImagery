@@ -30,16 +30,16 @@ int main() {
     printf("TODO: Coalesce labels\n");
 
     // This should create the ImageProcessor
-    GPreProcessor        preprocessor(targetImages, TARGET, 5, 5, 1.0, 1.0);
-    RoiBuildingProcessor roibuilder();
+    GPreProcessor    preprocessor(targetImages, TARGET, 5, 5, 1.0, 1.0);
+    ContourProcessor contourprocessor(targetImages, TARGET, 20);
     
     // Run the preprocessor
     preprocessor.processImages();
 
     // Run the feature extractor
+    contourprocessor.processImages();
 
     // Run the ROI builder
-
 
     // Score the output
     printf("TODO: implement scoring around Image Processors\n");
@@ -49,7 +49,7 @@ int main() {
     cvWaitKey();
 
     // Clean up Images
-    for(int i = 0; i < targetImages.size(); i++) {
+    for(uint32_t i = 0; i < targetImages.size(); i++) {
         delete targetImages[i];
     }
 
