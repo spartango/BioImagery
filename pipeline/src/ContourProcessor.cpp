@@ -39,7 +39,8 @@ namespace Bioimagery {
     images[targetIndex]->loadImage("proto.melamp.us");
     
     // Create a binary map 
-    IplImage* map = cvCreateImage(cvSize(images[targetIndex]->width, images[targetIndex]->width), IPL_DEPTH_8U, 1);
+    IplImage* map = cvCreateImage(cvSize(images[targetIndex]->width, images[targetIndex]->height), IPL_DEPTH_8U, 1);
+    printf("Map created %d x %d\n", map->width, map->height);
 
     // Mark unsolved positions
     memset(map->imageData, UNOCCUPIED, map->imageSize);
@@ -50,10 +51,12 @@ namespace Bioimagery {
       uchar *ptr = (uchar*) (map->imageData + y*map->widthStep);
 
       for(int x = 0; x < map->width; x++) {
-        if(ptr[x] == UNOCCUPIED) {
+        //printf("%d|", ptr[x]);
+
+        if(ptr[x] != OCCUPIED) {
           // if position unsolved
 
-          // Select a color: TODO
+          // Select a color:
           CvScalar color = CV_RGB(255 * rand(), 255 * rand(), 255 * rand());
           
           // Will be Feature boxes
@@ -68,9 +71,12 @@ namespace Bioimagery {
           Roi* newRoi = new Roi(1, components->rect.x, components->rect.y, components->rect.height, components->rect.width, 100);
           rois.push_back(newRoi);
 
-        }
+          printf("ROI created: %d, %d %d x %d\n", newRoi->x, newRoi->y, newRoi->width, newRoi->height);
+        } 
       }
     }
+
+    printf("Floodfilling complete\n");
 
     return images[targetIndex];
   }
