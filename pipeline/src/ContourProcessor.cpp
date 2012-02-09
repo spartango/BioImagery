@@ -38,8 +38,6 @@ namespace Bioimagery {
   LabeledImage* ContourProcessor::processImages() {
     images[targetIndex]->loadImage("proto.melamp.us");
     
-
-
     // Create a binary map 
     IplImage* map = cvCreateImage(cvSize(images[targetIndex]->width, images[targetIndex]->width), IPL_DEPTH_8U, 1);
 
@@ -65,7 +63,7 @@ namespace Bioimagery {
 
           // Copy the component to a map
           cvDrawContours(map, components->contour, cvScalar(OCCUPIED), cvScalar(OCCUPIED), 1);
-          
+
           // Store the ROI box
           Roi* newRoi = new Roi(1, components->rect.x, components->rect.y, components->rect.height, components->rect.width, 100);
           rois.push_back(newRoi);
