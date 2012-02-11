@@ -34,6 +34,10 @@ namespace Bioimagery {
 
     }
 
+    GPreProcessor::~GPreProcessor() {
+      
+    }
+
     LabeledImage* GPreProcessor::processImages() {
         // Make sure we load the target image
         images[targetIndex]->loadImage("proto.melamp.us");

@@ -28,7 +28,6 @@ namespace Bioimagery {
         double threshold;
         int rasterIncrement;
 
-        void drawRois();
     };
 
 }

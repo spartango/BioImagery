@@ -15,6 +15,8 @@ namespace Bioimagery {
         ThresholdProcessor(vector<LabeledImage*> images, int targetIndex, double threshold);
         ThresholdProcessor(LabeledImage** images, int numImages, int targetIndex, double threshold);
 
+        virtual ~ThresholdProcessor();
+
         // Runs image processing and returns the target image
         virtual LabeledImage* processImages();
 

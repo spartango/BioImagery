@@ -27,6 +27,8 @@ namespace Bioimagery {
                       double sigma_x,
                       double sigma_y);
 
+        virtual ~GPreProcessor();
+
         // Runs image processing and returns the target image
         virtual LabeledImage* processImages();
     

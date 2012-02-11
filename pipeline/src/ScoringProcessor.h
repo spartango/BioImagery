@@ -20,6 +20,9 @@ namespace Bioimagery {
         // Runs image processing and returns the target image
         virtual LabeledImage* processImages();
 
+        void scoreRois();
+        void drawRois();
+
     private:
         vector<Roi*> rois;
 

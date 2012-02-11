@@ -22,6 +22,10 @@ namespace Bioimagery {
 
     }
 
+    ThresholdProcessor::~ThresholdProcessor() {
+
+    }
+
     LabeledImage* ThresholdProcessor::processImages() {
         // Make sure we load the target image
         images[targetIndex]->loadImage("proto.melamp.us");

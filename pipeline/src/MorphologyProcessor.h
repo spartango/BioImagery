@@ -15,6 +15,8 @@ namespace Bioimagery {
         MorphologyProcessor(vector<LabeledImage*> images, int targetIndex, int iterations);
         MorphologyProcessor(LabeledImage** images, int numImages, int targetIndex, int iterations);
 
+        virtual ~MorphologyProcessor();
+        
         // Runs image processing and returns the target image
         virtual LabeledImage* processImages();
 

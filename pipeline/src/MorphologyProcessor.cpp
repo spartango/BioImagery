@@ -22,6 +22,10 @@ namespace Bioimagery {
 
     }
 
+    MorphologyProcessor::~MorphologyProcessor() {
+
+    }
+
     LabeledImage* MorphologyProcessor::processImages() {
         // Make sure we load the target image
         images[targetIndex]->loadImage("proto.melamp.us");
