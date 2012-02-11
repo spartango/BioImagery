@@ -63,7 +63,7 @@ namespace Bioimagery {
           // if position unsolved
 
           // Select a color:
-          CvScalar color = CV_RGB(255 * rand(), 255 * rand(), 255 * rand());
+          CvScalar color = CV_RGB((rand() % 255), (rand() % 255), (rand() % 255));
           
           // Will be Feature boxes
           CvConnectedComp component;

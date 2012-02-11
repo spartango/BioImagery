@@ -36,7 +36,9 @@ namespace Bioimagery {
     }
 
     void ScoringProcessor::scoreRois() {
-        
+        // Score will be calculated from area overlap 
+        // And difference in dimensions
+
     }
 
     void ScoringProcessor::drawRois() {
@@ -44,7 +46,7 @@ namespace Bioimagery {
             cvRectangle(images[targetIndex]->image, 
                         cvPoint(rois[i]->x, rois[i]->y), 
                         cvPoint(rois[i]->x + rois[i]->width, rois[i]->y + rois[i]->height), 
-                        CV_RGB(255 * rand(), 255 * rand(), 255 * rand()),
+                        CV_RGB(rand() % 255, rand() % 255, rand() % 255),
                         (rois[i]->confidence / MAX_RECT_THICKNESS + 1));
     }
   }
