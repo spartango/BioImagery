@@ -14,13 +14,15 @@ namespace Bioimagery {
     class ScoringProcessor : ImageProcessor {
 
     public:
-        ScoringProcessor(vector<LabeledImage*> images, int targetIndex, vector<Roi*> targets);
-        ScoringProcessor(LabeledImage **images, int numImages, int targetIndex, vector<Roi*> targets);
+        ScoringProcessor(vector<LabeledImage*> images, int targetIndex, vector<Roi*> rois);
+        ScoringProcessor(LabeledImage **images, int numImages, int targetIndex, vector<Roi*> rois);
 
         virtual ~ScoringProcessor();
 
         // Runs image processing and returns the target image
         virtual LabeledImage* processImages();
+        
+        vector<Roi*> rois;
 
         void scoreRois();
         void drawRois();
@@ -29,7 +31,6 @@ namespace Bioimagery {
 
         void scoreRoi(Roi *targetRoi);
 
-        vector<Roi*> rois;
 
     };
 

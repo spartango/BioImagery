@@ -12,16 +12,16 @@ namespace Bioimagery {
 
     ScoringProcessor::ScoringProcessor(vector<LabeledImage*> images,
                                        int targetIndex,
-                                       vector<Roi*> targets) : ImageProcessor(images, targetIndex),
-                                                               rois(targets) {
+                                       vector<Roi*> rois) : ImageProcessor(images, targetIndex),
+                                                               rois(rois) {
 
     }
 
     ScoringProcessor::ScoringProcessor(LabeledImage** images,
                                        int numImages,
                                        int targetIndex,
-                                       vector<Roi*> targets): ImageProcessor(images, numImages, targetIndex),
-                                                              rois(targets) {
+                                       vector<Roi*> rois): ImageProcessor(images, numImages, targetIndex),
+                                                              rois(rois) {
    
     }
 
@@ -33,7 +33,10 @@ namespace Bioimagery {
         // Make sure we load the target image
         images[targetIndex]->loadImage("proto.melamp.us");
         
+        printf("Scoring rois: %u\n", rois.size());
         scoreRois();
+
+        printf("Drawing rois\n");
         drawRois();
         
         return images[targetIndex];
@@ -77,7 +80,7 @@ namespace Bioimagery {
         } else {
             targetRoi->confidence = 0;
         }
-         printf("Roi (%d, %d) -> Confidence: %d\n", targetRoi->x, targetRoi->y, targetRoi->confidence);
+        printf("Roi (%d, %d) -> Confidence: %d\n", targetRoi->x, targetRoi->y, targetRoi->confidence);
 
     }
 

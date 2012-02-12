@@ -99,7 +99,7 @@ namespace Bioimagery {
       }
     }
 
-    printf("Floodfilling complete\n");
+    printf("Floodfilling complete: %u\n", rois.size());
 
     //cvShowImage("Map", map);
     cvReleaseImage(&map);

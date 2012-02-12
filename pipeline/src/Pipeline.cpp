@@ -32,7 +32,6 @@ int main() {
     // This should create the ImageProcessor
     GPreProcessor    preprocessor(targetImages, TARGET, 7, 7, .8, .8);
     ContourProcessor contourprocessor(targetImages, TARGET, 6.0, 11);
-    ScoringProcessor scoringprocessor(targetImages, TARGET, contourprocessor.rois);
     // Run the preprocessor
     preprocessor.processImages();
 
@@ -40,7 +39,8 @@ int main() {
     contourprocessor.processImages();
 
     // Run the ROI builder
-
+    ScoringProcessor scoringprocessor(targetImages, TARGET, contourprocessor.rois);
+    
     // Score the output
     scoringprocessor.processImages();
 
