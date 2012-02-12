@@ -7,7 +7,7 @@
 #include "MorphologyProcessor.h"
 #include "ThresholdProcessor.h"
 #include "ContourProcessor.h"
-#include "RoiBuildingProcessor.h"
+#include "ScoringProcessor.h"
 
 #define NUM_IMAGES 8
 #define TARGET 6
@@ -32,7 +32,7 @@ int main() {
     // This should create the ImageProcessor
     GPreProcessor    preprocessor(targetImages, TARGET, 7, 7, .8, .8);
     ContourProcessor contourprocessor(targetImages, TARGET, 6.0, 11);
-    
+    ScoringProcessor scoringprocessor(targetImages, TARGET, contourprocessor.rois);
     // Run the preprocessor
     preprocessor.processImages();
 
@@ -42,7 +42,7 @@ int main() {
     // Run the ROI builder
 
     // Score the output
-    printf("TODO: implement scoring around Image Processors\n");
+    scoringprocessor.processImages();
 
     // Display the processed image
     cvShowImage("Processed", targetImages[TARGET]->image);

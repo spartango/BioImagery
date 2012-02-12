@@ -32,7 +32,10 @@ namespace Bioimagery {
     LabeledImage* ScoringProcessor::processImages() {
         // Make sure we load the target image
         images[targetIndex]->loadImage("proto.melamp.us");
-
+        
+        scoreRois();
+        drawRois();
+        
         return images[targetIndex];
     }
 
@@ -47,8 +50,8 @@ namespace Bioimagery {
         // Score will be calculated from area overlap 
         LabeledImage *targetImage = images[targetIndex];
 
-        Roi     *bestMatch = NULL;
-        uint64_t matchArea = 0;
+        Roi *bestMatch = NULL;
+        int  matchArea = 0;
 
         for(uint32_t l = 0; l < targetImage->rois.size(); l++) {
             Roi *labeledRoi = targetImage->rois[l];
@@ -62,10 +65,24 @@ namespace Bioimagery {
             }
         }
 
+        if(bestMatch != NULL) {
+            // Assign confidence score
+            int labelArea  = (bestMatch->height * bestMatch->width);
+            int targetArea = (targetRoi->height * targetRoi->width);
+
+            // % of label occupied by targetROI, compensated for oversized areas
+            targetRoi->confidence = 100  
+                                    * ((labelArea / targetArea) > 1 ? 1 : (labelArea / targetArea)) 
+                                    * (matchArea / labelArea);
+        } else {
+            targetRoi->confidence = 0;
+        }
+         printf("Roi (%d, %d) -> Confidence: %d\n", targetRoi->x, targetRoi->y, targetRoi->confidence);
+
     }
 
     void ScoringProcessor::drawRois() {
-        for(int i = 0; i < rois.size(); i++) {
+        for(uint32_t i = 0; i < rois.size(); i++) {
             cvRectangle(images[targetIndex]->image, 
                         cvPoint(rois[i]->x, rois[i]->y), 
                         cvPoint(rois[i]->x + rois[i]->width, rois[i]->y + rois[i]->height), 
