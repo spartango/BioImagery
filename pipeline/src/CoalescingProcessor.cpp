@@ -28,6 +28,11 @@ namespace Bioimagery {
 
     LabeledImage* CoalescingProcessor::processImages() {
         // Make sure we load the target image
+        images[targetIndex]->loadImage("proto.melamp.us");
+
+        // Scan through ROIs, for each
+        // Find maximum overlap > threshold
+        // Coalesce the ROIs into a single
 
         return images[targetIndex];
     }
