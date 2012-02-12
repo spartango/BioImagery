@@ -49,7 +49,9 @@ namespace Bioimagery {
     memset(map->imageData, UNOCCUPIED, map->imageSize);
 
     // Make a working copy of the image
-    IplImage* workingCopy = cvCreateImage(cvGetSize(images[targetIndex]->image), images[targetIndex]->image->depth, images[targetIndex]->image->nChannels);
+    IplImage* workingCopy = cvCreateImage(cvGetSize(images[targetIndex]->image), 
+                                          images[targetIndex]->image->depth, 
+                                          images[targetIndex]->image->nChannels);
 
     // Raster across the map
     for(int y = 0; y < map->height; y+=rasterIncrement) {
@@ -71,7 +73,11 @@ namespace Bioimagery {
           // Try a flood fill    
           cvCopy(images[targetIndex]->image, workingCopy);
 
-          cvFloodFill(workingCopy, cvPoint(x, y), color, cvScalarAll(threshold), cvScalarAll(threshold), &component);
+          cvFloodFill(workingCopy, 
+                      cvPoint(x, y), color, 
+                      cvScalarAll(threshold), 
+                      cvScalarAll(threshold), 
+                      &component);
 
           // Store the ROI box
           if(component.rect.width > 1 

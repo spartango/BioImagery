@@ -2,6 +2,8 @@
 #define SCORINGPROCESSOR_H_
 
 #include <LabeledImage.h>
+#include <Roi.h>
+
 #include "ImageProcessor.h"
 #include <vector>
 
@@ -24,6 +26,9 @@ namespace Bioimagery {
         void drawRois();
 
     private:
+
+        void scoreRoi(Roi *targetRoi);
+
         vector<Roi*> rois;
 
     };

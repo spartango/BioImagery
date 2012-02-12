@@ -37,32 +37,31 @@ namespace Bioimagery {
     }
 
     void ScoringProcessor::scoreRois() {
+        // For each target roi
+        for(uint32_t i = 0; i < rois.size(); i++){
+            scoreRoi(rois[i]);
+        }
+    }
+
+    void ScoringProcessor::scoreRoi(Roi *targetRoi) {
         // Score will be calculated from area overlap 
         LabeledImage *targetImage = images[targetIndex];
 
-        // For each target roi
-        for(uint32_t i = 0; i < rois.size(); i++){
-            Roi *targetRoi = rois[i];
+        Roi     *bestMatch = NULL;
+        uint64_t matchArea = 0;
 
-            Roi     *bestMatch = NULL;
-            uint64_t matchArea = 0;
+        for(uint32_t l = 0; l < targetImage->rois.size(); l++) {
+            Roi *labeledRoi = targetImage->rois[l];
 
-            for(uint32_t l = 0; l < targetImage->rois.size(); l++) {
-                Roi *labeledRoi = targetImage->rois[l];
+            Rect intersection = targetRoi->intersection(labeledRoi);
+            int area = intersection.area();
 
-                //  Check Intersection with each labeled roi
-                Rect targetRect   = Rect(targetRoi->x, targetRoi->y, targetRoi->width, targetRoi->height);
-                Rect labelRect    = Rect(labeledRoi->x, labeledRoi->y, labeledRoi->width, labeledRoi->height);
-                Rect intersection = labelRect & targetRect; 
-
-                int area = intersection.area();
-                if(area > matchArea) {
-                    bestMatch = labeledRoi;
-                    matchArea = area;
-                }
+            if(area > matchArea) {
+                bestMatch = labeledRoi;
+                matchArea = area;
             }
-
         }
+
     }
 
     void ScoringProcessor::drawRois() {

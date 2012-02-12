@@ -73,4 +73,13 @@ namespace Bioimagery {
 
         }
     }
+
+    Rect Roi::intersection(Roi *target) {
+        //  Check Intersection with each labeled roi
+        Rect targetRect   = Rect(x, y, width, height);
+        Rect labelRect    = Rect(target->x, target->y, target->width, target->height);
+        return labelRect & targetRect; 
+    }
+
+
 }
