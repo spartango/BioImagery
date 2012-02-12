@@ -56,6 +56,8 @@ namespace Bioimagery {
         Roi *bestMatch = NULL;
         int  matchArea = 0;
 
+        //printf("Scanning against %d \n", targetImage->rois.size());
+
         for(uint32_t l = 0; l < targetImage->rois.size(); l++) {
             Roi *labeledRoi = targetImage->rois[l];
 
@@ -74,13 +76,15 @@ namespace Bioimagery {
             int targetArea = (targetRoi->height * targetRoi->width);
 
             // % of label occupied by targetROI, compensated for oversized areas
-            targetRoi->confidence = 100  
-                                    * ((labelArea / targetArea) > 1 ? 1 : (labelArea / targetArea)) 
-                                    * (matchArea / labelArea);
+            targetRoi->confidence = round(
+                                          100.0  
+                                          * ((labelArea / targetArea) >= 1 ? 1.0 : (((float) labelArea) / targetArea)) 
+                                          * (((float) matchArea) / labelArea));
+            printf("Roi (%d, %d) -> Confidence: %d\n", targetRoi->x, targetRoi->y, targetRoi->confidence);
+
         } else {
             targetRoi->confidence = 0;
         }
-        printf("Roi (%d, %d) -> Confidence: %d\n", targetRoi->x, targetRoi->y, targetRoi->confidence);
 
     }
 

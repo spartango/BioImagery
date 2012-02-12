@@ -10,7 +10,7 @@
 #include "ScoringProcessor.h"
 
 #define NUM_IMAGES 8
-#define TARGET 6
+#define TARGET 2
 #define LABEL_HOST "proto.melamp.us"
 
 using namespace std;
@@ -40,7 +40,7 @@ int main() {
 
     // Run the ROI builder
     ScoringProcessor scoringprocessor(targetImages, TARGET, contourprocessor.rois);
-    
+
     // Score the output
     scoringprocessor.processImages();
 
