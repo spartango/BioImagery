@@ -81,7 +81,6 @@ namespace Bioimagery {
                                           * ((labelArea / targetArea) >= 1 ? 1.0 : (((float) labelArea) / targetArea)) 
                                           * (((float) matchArea) / labelArea));
             printf("Roi (%d, %d) -> Confidence: %d\n", targetRoi->x, targetRoi->y, targetRoi->confidence);
-
         } else {
             targetRoi->confidence = 0;
         }
@@ -90,11 +89,13 @@ namespace Bioimagery {
 
     void ScoringProcessor::drawRois() {
         for(uint32_t i = 0; i < rois.size(); i++) {
-            cvRectangle(images[targetIndex]->image, 
-                        cvPoint(rois[i]->x, rois[i]->y), 
-                        cvPoint(rois[i]->x + rois[i]->width, rois[i]->y + rois[i]->height), 
-                        CV_RGB(rand() % 255, rand() % 255, rand() % 255),
-                        (rois[i]->confidence / MAX_RECT_THICKNESS + 1));
+            if(rois[i]->confidence > 0) {
+                cvRectangle(images[targetIndex]->image, 
+                            cvPoint(rois[i]->x, rois[i]->y), 
+                            cvPoint(rois[i]->x + rois[i]->width, rois[i]->y + rois[i]->height), 
+                            CV_RGB(rand() % 255, rand() % 255, rand() % 255),
+                            (rois[i]->confidence / MAX_RECT_THICKNESS + 1));
+            }
     }
   }
 }
