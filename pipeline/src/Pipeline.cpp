@@ -8,6 +8,7 @@
 #include "ThresholdProcessor.h"
 #include "ContourProcessor.h"
 #include "ScoringProcessor.h"
+#include "CoalescingProcessor.h"
 
 #define NUM_IMAGES 8
 #define TARGET 2
@@ -29,10 +30,14 @@ int main() {
     // Coalesce labels
     printf("TODO: Coalesce labels\n");
 
-    // This should create the ImageProcessor
-    GPreProcessor    preprocessor(targetImages, TARGET, 7, 7, .8, .8);
-    ContourProcessor contourprocessor(targetImages, TARGET, 6.0, 11);
-    ScoringProcessor scoringprocessor(targetImages, TARGET, contourprocessor.rois);
+    // This should create the ImageProcessors
+    CoalescingProcessor coalescingprocessor(targetImages, TARGET, 70);
+    GPreProcessor       preprocessor(targetImages, TARGET, 7, 7, .8, .8);
+    ContourProcessor    contourprocessor(targetImages, TARGET, 6.0, 11);
+    ScoringProcessor    scoringprocessor(targetImages, TARGET, contourprocessor.rois);
+
+    // Coalesce labeled rois
+    coalescingprocessor.processImages();
 
     // Run the preprocessor
     preprocessor.processImages();
