@@ -57,9 +57,11 @@ namespace Bioimagery {
                     // TODO confidence scoring
 
                     // Make a new ROI with the coalesced params
-                    delete coalesceRoi;
-                    coalesceRoi = new Roi(0, unionRect.x, unionRect.y, unionRect.height, unionRect.width, round(score));
-                    rois[i] = coalesceRoi;
+                    coalesceRoi->x      = unionRect.x;
+                    coalesceRoi->y      = unionRect.y;
+                    coalesceRoi->height = unionRect.height;
+                    coalesceRoi->width  = unionRect.width;
+                    rois[i]             = coalesceRoi;
 
                     printf("Coalesced into (%d, %d), %d x %d -> %f\n", coalesceRoi->x, 
                                                                        coalesceRoi->y, 

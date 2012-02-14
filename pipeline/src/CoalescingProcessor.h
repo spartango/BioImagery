@@ -22,8 +22,7 @@ namespace Bioimagery {
         // Runs image processing and returns the target image
         LabeledImage* processImages();
 
-        vector<Roi*> rois;
-    
+        vector<Roi*> rois;    
     private: 
         double threshold;
         
