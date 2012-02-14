@@ -70,8 +70,6 @@ namespace Bioimagery {
                     // remove the targetRoi
                     rois.erase(rois.begin() + j);
                     j--;
-                } else {
-                    printf("Separate -> %f\n", score);
                 }
 
             }

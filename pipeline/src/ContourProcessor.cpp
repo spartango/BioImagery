@@ -93,13 +93,13 @@ namespace Bioimagery {
 
             Roi* newRoi = new Roi(0, component.rect.x, component.rect.y, component.rect.height, component.rect.width, 100);
             rois.push_back(newRoi);
-            printf("ROI created: (%d, %d) => %d, %d of %d x %d\n", x, y, newRoi->x, newRoi->y, newRoi->width, newRoi->height);
+            //printf("ROI created: (%d, %d) => %d, %d of %d x %d\n", x, y, newRoi->x, newRoi->y, newRoi->width, newRoi->height);
           }
         } 
       }
     }
 
-    printf("Floodfilling complete: %u\n", rois.size());
+    printf("Floodfilling complete: %lu\n", rois.size());
 
     //cvShowImage("Map", map);
     cvReleaseImage(&map);

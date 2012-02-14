@@ -29,11 +29,11 @@ int main() {
         targetImages.push_back(newImage);
     }
 
-    CoalescingProcessor coalescingprocessor(targetImages, TARGET, 70, targetImages[TARGET]->rois);
+    CoalescingProcessor labelprocessor(targetImages, TARGET, 70, targetImages[TARGET]->rois);
 
     // Coalesce labeled rois
-    coalescingprocessor.processImages();
-    targetImages[TARGET]->rois = coalescingprocessor.rois;
+    labelprocessor.processImages();
+    targetImages[TARGET]->rois = labelprocessor.rois;
 
     // Processors
     GPreProcessor preprocessor(targetImages, TARGET, 5, 5, 1.0, 1.0);
@@ -42,7 +42,7 @@ int main() {
     // ThresholdProcessor threshprocessor(targetImages, TARGET, 127.0);
     // PyramidSegProcessor segproc (targetImages, TARGET, 20, 5);
 
-    ContourProcessor contourprocessor(targetImages, TARGET, 6.0, 11);
+    ContourProcessor    contourprocessor(targetImages, TARGET, 6.0, 11);
 
     // Run the preprocessor
     preprocessor.processImages();
@@ -57,9 +57,11 @@ int main() {
     // segproc.processImages();
 
     // Run the ROI builder
+    CoalescingProcessor coalescingprocessor(targetImages, TARGET, 50, contourprocessor.rois);
+    coalescingprocessor.processImages();
 
     // Score the output 
-    ScoringProcessor scoringprocessor(targetImages, TARGET, contourprocessor.rois);   
+    ScoringProcessor scoringprocessor(targetImages, TARGET, coalescingprocessor.rois);   
     scoringprocessor.processImages();
 
     // Display the processed image
