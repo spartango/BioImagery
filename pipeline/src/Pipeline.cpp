@@ -10,6 +10,7 @@
 #include "ScoringProcessor.h"
 #include "CoalescingProcessor.h"
 #include "CannyEdgeProcessor.h"
+#include "PyramidSegProcessor.h"
 
 #define NUM_IMAGES 8
 #define TARGET 2
@@ -35,10 +36,13 @@ int main() {
     targetImages[TARGET]->rois = coalescingprocessor.rois;
 
     // Processors
-    GPreProcessor       preprocessor(targetImages, TARGET, 7, 7, .8, .8);
-    //CannyEdgeProcessor cannyedgeprocessor(targetImages, TARGET, 7, 40.0, 80.0);
-    ContourProcessor    contourprocessor(targetImages, TARGET, 6.0, 11);
+    GPreProcessor preprocessor(targetImages, TARGET, 5, 5, 1.0, 1.0);
+    // CannyEdgeProcessor cannyedgeprocessor(targetImages, TARGET, 7, 40.0, 80.0);
+    // MorphologyProcessor morphprocessor(targetImages, TARGET, 1);
+    // ThresholdProcessor threshprocessor(targetImages, TARGET, 127.0);
+    // PyramidSegProcessor segproc (targetImages, TARGET, 20, 5);
 
+    ContourProcessor contourprocessor(targetImages, TARGET, 6.0, 11);
 
     // Run the preprocessor
     preprocessor.processImages();
@@ -48,6 +52,9 @@ int main() {
 
     // Run the canny edge detector
     // cannyedgeprocessor.processImages();
+
+    // Run the segmenter
+    // segproc.processImages();
 
     // Run the ROI builder
 
