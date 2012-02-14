@@ -33,7 +33,7 @@ int main() {
 
     // Coalesce labeled rois
     labelprocessor.processImages();
-    targetImages[TARGET]->rois = labelprocessor.rois;
+    //targetImages[TARGET]->rois = labelprocessor.rois;
 
     // Processors
     GPreProcessor preprocessor(targetImages, TARGET, 5, 5, 1.0, 1.0);

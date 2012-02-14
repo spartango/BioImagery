@@ -27,18 +27,13 @@ namespace Bioimagery {
     }
 
     CoalescingProcessor::~CoalescingProcessor() {
-        for(uint32_t i=0; i<rois.size(); i++) {
-            delete rois[i];
-        }
-        rois.clear();
     }
 
     LabeledImage* CoalescingProcessor::processImages() {        
         // Scan through ROIs, for each
         for(uint32_t i = 0; i < rois.size(); i++) {
             // Make a clean copy to work on
-            Roi *coalesceRoi = new Roi(0, rois[i]->x, rois[i]->y, rois[i]->width, rois[i]->height, rois[i]->confidence);
-            rois[i]          = coalesceRoi;
+            Roi *coalesceRoi = rois[i];
 
             // Try to coalesce with downstream 
             for(uint32_t j = i + 1; j < rois.size(); j++) {
@@ -46,7 +41,7 @@ namespace Bioimagery {
 
                 // Check intersection
                 int coalesceArea = coalesceRoi->height * coalesceRoi->width;
-                int targetArea   = targetRoi->height * targetRoi->width;
+                int targetArea   = targetRoi->height   * targetRoi->width;
                 int matchArea    = (coalesceRoi->intersection(targetRoi)).area(); 
 
                 double score     =  100  
