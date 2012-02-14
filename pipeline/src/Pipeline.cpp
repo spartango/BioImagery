@@ -9,6 +9,7 @@
 #include "ContourProcessor.h"
 #include "ScoringProcessor.h"
 #include "CoalescingProcessor.h"
+#include "CannyEdgeProcessor.h"
 
 #define NUM_IMAGES 8
 #define TARGET 2
@@ -29,18 +30,24 @@ int main() {
 
     CoalescingProcessor coalescingprocessor(targetImages, TARGET, 70, targetImages[TARGET]->rois);
 
-    GPreProcessor       preprocessor(targetImages, TARGET, 7, 7, .8, .8);
-    ContourProcessor    contourprocessor(targetImages, TARGET, 6.0, 11);
-
     // Coalesce labeled rois
     coalescingprocessor.processImages();
     targetImages[TARGET]->rois = coalescingprocessor.rois;
+
+    // Processors
+    GPreProcessor       preprocessor(targetImages, TARGET, 7, 7, .8, .8);
+    //CannyEdgeProcessor cannyedgeprocessor(targetImages, TARGET, 7, 40.0, 80.0);
+    ContourProcessor    contourprocessor(targetImages, TARGET, 6.0, 11);
+
 
     // Run the preprocessor
     preprocessor.processImages();
 
     // Run the feature extractor
     contourprocessor.processImages();
+
+    // Run the canny edge detector
+    // cannyedgeprocessor.processImages();
 
     // Run the ROI builder
 
