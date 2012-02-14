@@ -33,7 +33,10 @@ namespace Bioimagery {
     LabeledImage* CoalescingProcessor::processImages() {        
         // Scan through ROIs, for each
         for(uint32_t i = 0; i < rois.size(); i++) {
-            Roi *coalesceRoi = rois[i];
+            // Make a clean copy to work on
+            Roi *coalesceRoi = new Roi(0, rois[i]->x, rois[i]->y, rois[i]->width, rois[i]->height, rois[i]->confidence);
+            rois[i]          = coalesceRoi;
+
             // Try to coalesce with downstream 
             for(uint32_t j = i + 1; j < rois.size(); j++) {
                 Roi *targetRoi = rois[j];
@@ -61,7 +64,6 @@ namespace Bioimagery {
                     coalesceRoi->y      = unionRect.y;
                     coalesceRoi->height = unionRect.height;
                     coalesceRoi->width  = unionRect.width;
-                    rois[i]             = coalesceRoi;
 
                     printf("Coalesced into (%d, %d), %d x %d -> %f\n", coalesceRoi->x, 
                                                                        coalesceRoi->y, 
