@@ -43,11 +43,11 @@ namespace Bioimagery {
                 Roi *targetRoi = targetImage->rois[j];
 
                 // Check intersection
-                int coalesceArea    = coalesceRoi->height * coalesceRoi->width;
-                int targetArea = targetRoi->height * targetRoi->width;
-                int matchArea  = (coalesceRoi->intersection(targetRoi)).area(); 
+                int coalesceArea = coalesceRoi->height * coalesceRoi->width;
+                int targetArea   = targetRoi->height * targetRoi->width;
+                int matchArea    = (coalesceRoi->intersection(targetRoi)).area(); 
 
-                double score   =  ((coalesceArea / targetArea) >= 1 ? 1.0 
+                double score     =  100 * ((coalesceArea / targetArea) >= 1 ? 1.0 
                                                                 : ((double) coalesceArea) / targetArea)
                                   * ((double) matchArea) / coalesceArea;
 
@@ -55,8 +55,25 @@ namespace Bioimagery {
                     // These are coalescable
                     // Coalesced ROI has
                     // Max bounding box (union)
-                    
+                    Rect unionRect = Rect(coalesceRoi->x, coalesceRoi->y, coalesceRoi->width, coalesceRoi->height)
+                                     | Rect(targetRoi->x, targetRoi->y, targetRoi->width, targetRoi->height);
+
+                    // TODO confidence scoring
+
                     // Make a new ROI with the coalesced params
+                    delete coalesceRoi;
+                    coalesceRoi = new Roi(0, unionRect.x, unionRect.y, unionRect.height, unionRect.width, round(score));
+                    targetImage->rois[i] = coalesceRoi;
+
+                    printf("Coalesced into (%d, %d), %d x %d -> %f", coalesceRoi->x, 
+                                                                     coalesceRoi->y, 
+                                                                     coalesceRoi->width, 
+                                                                     coalesceRoi->height, 
+                                                                     score);
+
+                    // remove the targetRoi
+                    targetImage->rois.erase(targetImage->rois.begin() + j);
+                    j--;
                 }
 
             }
