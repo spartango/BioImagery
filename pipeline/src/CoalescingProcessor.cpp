@@ -27,12 +27,43 @@ namespace Bioimagery {
     }
 
     LabeledImage* CoalescingProcessor::processImages() {
+        LabeledImage *targetImage = images[targetIndex];
+
         // Make sure we load the target image
-        images[targetIndex]->loadImage("proto.melamp.us");
+        targetImage->loadImage("proto.melamp.us");
+        
+        vector<Roi*> coalesced;
 
         // Scan through ROIs, for each
-        // Find maximum overlap > threshold
-        // Coalesce the ROIs into a single
+        
+        for(uint32_t i = 0; i < targetImage->rois.size(); i++) {
+            Roi *coalesceRoi = targetImage->rois[i];
+            // Try to coalesce with downstream 
+            for(uint32_t j = i + 1; j < targetImage->rois.size(); j++) {
+                Roi *targetRoi = targetImage->rois[j];
+
+                // Check intersection
+                int coalesceArea    = coalesceRoi->height * coalesceRoi->width;
+                int targetArea = targetRoi->height * targetRoi->width;
+                int matchArea  = (coalesceRoi->intersection(targetRoi)).area(); 
+
+                double score   =  ((coalesceArea / targetArea) >= 1 ? 1.0 
+                                                                : ((double) coalesceArea) / targetArea)
+                                  * ((double) matchArea) / coalesceArea;
+
+                if(score >= threshold) {
+                    // These are coalescable
+                    // Coalesced ROI has
+                    // Max bounding box (union)
+                    
+                    // Make a new ROI with the coalesced params
+                }
+
+            }
+        }
+
+
+
 
         return images[targetIndex];
     }
