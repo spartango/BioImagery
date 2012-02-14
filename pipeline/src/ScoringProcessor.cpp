@@ -12,7 +12,7 @@ namespace Bioimagery {
 
     ScoringProcessor::ScoringProcessor(vector<LabeledImage*> images,
                                        int targetIndex,
-                                       vector<Roi*> &rois) : ImageProcessor(images, targetIndex),
+                                       vector<Roi*> rois) : ImageProcessor(images, targetIndex),
                                                                rois(rois) {
 
     }
@@ -20,7 +20,7 @@ namespace Bioimagery {
     ScoringProcessor::ScoringProcessor(LabeledImage** images,
                                        int numImages,
                                        int targetIndex,
-                                       vector<Roi*> &rois): ImageProcessor(images, numImages, targetIndex),
+                                       vector<Roi*> rois): ImageProcessor(images, numImages, targetIndex),
                                                               rois(rois) {
    
     }

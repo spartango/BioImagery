@@ -34,7 +34,6 @@ int main() {
     CoalescingProcessor coalescingprocessor(targetImages, TARGET, 70);
     GPreProcessor       preprocessor(targetImages, TARGET, 7, 7, .8, .8);
     ContourProcessor    contourprocessor(targetImages, TARGET, 6.0, 11);
-    ScoringProcessor    scoringprocessor(targetImages, TARGET, contourprocessor.rois);
 
     // Coalesce labeled rois
     coalescingprocessor.processImages();
@@ -47,7 +46,8 @@ int main() {
 
     // Run the ROI builder
 
-    // Score the output    
+    // Score the output 
+    ScoringProcessor scoringprocessor(targetImages, TARGET, contourprocessor.rois);   
     scoringprocessor.processImages();
 
     // Display the processed image
