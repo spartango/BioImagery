@@ -27,7 +27,10 @@ namespace Bioimagery {
     }
 
     CoalescingProcessor::~CoalescingProcessor() {
-
+        for(uint32_t i=0; i<rois.size(); i++) {
+            delete rois[i];
+        }
+        rois.clear();
     }
 
     LabeledImage* CoalescingProcessor::processImages() {        
