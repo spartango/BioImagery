@@ -14,13 +14,15 @@ namespace Bioimagery {
     class CoalescingProcessor : ImageProcessor {
 
     public:
-        CoalescingProcessor(vector<LabeledImage*> images, int targetIndex, double threshold);
-        CoalescingProcessor(LabeledImage **images, int numImages, int targetIndex, double threshold);
+        CoalescingProcessor(vector<LabeledImage*> images, int targetIndex, double threshold, vector<Roi*> rois);
+        CoalescingProcessor(LabeledImage **images, int numImages, int targetIndex, double threshold, vector<Roi*> rois);
 
         virtual ~CoalescingProcessor();
 
         // Runs image processing and returns the target image
         LabeledImage* processImages();
+
+        vector<Roi*> rois;
     
     private: 
         double threshold;

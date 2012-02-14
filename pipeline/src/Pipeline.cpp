@@ -27,16 +27,14 @@ int main() {
         targetImages.push_back(newImage);
     }
 
-    // Coalesce labels
-    printf("TODO: Coalesce labels\n");
+    CoalescingProcessor coalescingprocessor(targetImages, TARGET, 70, targetImages[TARGET]->rois);
 
-    // This should create the ImageProcessors
-    CoalescingProcessor coalescingprocessor(targetImages, TARGET, 70);
     GPreProcessor       preprocessor(targetImages, TARGET, 7, 7, .8, .8);
     ContourProcessor    contourprocessor(targetImages, TARGET, 6.0, 11);
 
     // Coalesce labeled rois
     coalescingprocessor.processImages();
+    targetImages[TARGET]->rois = coalescingprocessor.rois;
 
     // Run the preprocessor
     preprocessor.processImages();
