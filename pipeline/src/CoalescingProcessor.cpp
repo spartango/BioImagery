@@ -31,11 +31,8 @@ namespace Bioimagery {
 
         // Make sure we load the target image
         targetImage->loadImage("proto.melamp.us");
-        
-        vector<Roi*> coalesced;
 
         // Scan through ROIs, for each
-        
         for(uint32_t i = 0; i < targetImage->rois.size(); i++) {
             Roi *coalesceRoi = targetImage->rois[i];
             // Try to coalesce with downstream 
@@ -78,9 +75,6 @@ namespace Bioimagery {
 
             }
         }
-
-
-
 
         return images[targetIndex];
     }
