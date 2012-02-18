@@ -12,9 +12,9 @@ namespace Bioimagery {
                                  int aperture_size, 
                                  double low_thresh,
                                  double high_thresh) : ImageProcessor(images, targetIndex),
-                                                   aperture_size(aperture_size), 
-                                                   low_thresh(low_thresh), 
-                                                   high_thresh(high_thresh){
+                                                       aperture_size(aperture_size), 
+                                                       low_thresh(low_thresh), 
+                                                       high_thresh(high_thresh){
     }
 
     CannyEdgeProcessor::CannyEdgeProcessor(LabeledImage** images, 
@@ -23,9 +23,9 @@ namespace Bioimagery {
                                  int aperture_size, 
                                  double low_thresh,
                                  double high_thresh) : ImageProcessor(images, numImages, targetIndex),
-                                                   aperture_size(aperture_size), 
-                                                   low_thresh(low_thresh), 
-                                                   high_thresh(high_thresh){
+                                                       aperture_size(aperture_size), 
+                                                       low_thresh(low_thresh), 
+                                                       high_thresh(high_thresh){
     }
 
     CannyEdgeProcessor::~CannyEdgeProcessor() {
@@ -35,17 +35,18 @@ namespace Bioimagery {
     LabeledImage* CannyEdgeProcessor::processImages() {
         // Make sure we load the target image
         images[targetIndex]->loadImage("proto.melamp.us");
-        
-	// Apply Canny Edge detection (cannot be in-place)
-	IplImage *orig = images[targetIndex]->image;
-	IplImage *copy = cvCreateImage( cvSize(orig->width,orig->height),
-                                            IPL_DEPTH_8U, 1 );
-	cvCvtColor(orig, copy, CV_RGB2GRAY);
-	// cvCopy(orig, copy, 0);
+      	// Apply Canny Edge detection (cannot be in-place)
+      	IplImage *orig = images[targetIndex]->image;
+      	IplImage *copy = cvCreateImage( cvSize(orig->width,orig->height),
+                                                  IPL_DEPTH_8U, 1 );
+      	cvCvtColor(orig, copy, CV_RGB2GRAY);
+      	
+        // cvCopy(orig, copy, 0);
         cvCanny(copy, copy, low_thresh, high_thresh, aperture_size);
-        
-	images[targetIndex]->image = copy;
-	cvReleaseImage(&orig);
+              
+      	images[targetIndex]->image = copy;
+      	cvReleaseImage(&orig);
+
         return images[targetIndex];
     }
 }

@@ -17,8 +17,8 @@ namespace Bioimagery {
                                      int targetIndex,
                                      double threshold, 
                                      int rasterIncrement) : ImageProcessor(images, targetIndex),
-                                                         threshold(threshold),
-                                                         rasterIncrement(rasterIncrement) {
+                                                            threshold(threshold),
+                                                            rasterIncrement(rasterIncrement) {
 
   }
 
@@ -26,9 +26,9 @@ namespace Bioimagery {
                                      int numImages,
                                      int targetIndex,
                                      double threshold,
-                                     int rasterIncrement): ImageProcessor(images, numImages, targetIndex),
-                                                        threshold(threshold),
-                                                        rasterIncrement(rasterIncrement) {
+                                     int rasterIncrement) : ImageProcessor(images, numImages, targetIndex),
+                                                            threshold(threshold),
+                                                            rasterIncrement(rasterIncrement) {
 
   }
 
