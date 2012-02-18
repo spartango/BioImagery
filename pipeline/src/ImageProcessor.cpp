@@ -24,6 +24,8 @@ namespace Bioimagery {
     }
 
     LabeledImage* ImageProcessor::processImages() {
+        // Make sure the target image is loaded
+        images[targetIndex]->loadImage("proto.melamp.us");
         // By default returns the Identity-- unprocessed image
         return images[targetIndex];
     }

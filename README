@@ -1,0 +1,4 @@
+2 parts:
+
+Lib labeler (data model) has LabeledImage.h and Roi.h classes. LabeledImage uses IplImage from OpenCV
+and stores a vector of ROIs.

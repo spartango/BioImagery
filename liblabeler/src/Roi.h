@@ -4,9 +4,11 @@
 #include <rapidjson/document.h>
 #include <string>
 #include <vector>
+#include <opencv2/core/core.hpp>
 
 using namespace rapidjson;
 using namespace std;
+using namespace cv;
 
 namespace Bioimagery {
 
@@ -36,6 +38,8 @@ namespace Bioimagery {
 
         // Tag ids
         vector<uint32_t> tags;
+
+        Rect intersection(Roi *target); 
 
         void loadTags(string host);
 
