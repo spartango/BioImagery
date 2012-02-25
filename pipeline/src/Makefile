@@ -1,11 +1,11 @@
 CC=g++
-CFLAGS= -Wall -02
+CFLAGS= -g -Wall -O2
 LIB_FLAGS = -lcurl -lm -lopencv_core -lopencv_highgui -lopencv_video -lopencv_imgproc -lopencv_gpu -lopencv_calib3d -lopencv_legacy -lopencv_objdetect -lopencv_ml -lopencv_features2d -lopencv_calib3d -lopencv_flann -llabeler
 
 LDFLAGS = -I/usr/local/include/opencv2 $(LIB_FLAGS)
 
 # Source files in the pipeline
-SRC = ImageProcessor.cpp Pipeline.cpp
+SRC = ImageProcessor.cpp Pipeline.cpp GPreProcessor.cpp MorphologyProcessor.cpp ThresholdProcessor.cpp ContourProcessor.cpp PyramidSegProcessor.cpp CannyEdgeProcessor.cpp ScoringProcessor.cpp CoalescingProcessor.cpp
 OBJECT = $(SRC:.cpp=.o)
 
 UNAME := $(shell uname)
@@ -27,3 +27,6 @@ processor: $(OBJECT)
 # Cleans targets
 clean:
 	rm -rf *.o core* test_processor pipeline
+
+run: processor
+	./pipeline

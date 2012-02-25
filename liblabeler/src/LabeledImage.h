@@ -32,7 +32,7 @@ namespace Bioimagery {
 
         IplImage *image;
 
-        Roi *rois;
+        vector<Roi*> rois;
 
         // Populates this image from the host's db
         void load(string host);
