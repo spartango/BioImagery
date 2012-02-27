@@ -45,13 +45,13 @@ namespace Bioimagery {
 
         if(document.IsObject()
             && document.HasMember("delta")
-            && document.HasMember("length")
+            && document.HasMember("count")
             && document.HasMember("images")
             && document.HasMember("description")) {
             // We have all the necessary fields
 
-            length = document["length"].GetUint();
-            delta  = document["delta"].GetDouble();
+            length = document["count"].GetUint();
+            delta  = document["delta"].GetInt() / 1000.0;
 
             if(!document["description"].IsNull()) {
                 description = document["description"].GetString();
