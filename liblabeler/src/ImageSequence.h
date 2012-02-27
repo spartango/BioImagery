@@ -21,9 +21,12 @@ namespace Bioimagery {
     
         /* data */
         uint32_t id;
+
         string description;
 
-        float delta;
+        // This is the change in time or space between the images
+        double   delta;
+        uint32_t length;
 
         vector<LabeledImage*> images;
 
@@ -33,9 +36,7 @@ namespace Bioimagery {
         // Gets sequence metadata
         void loadMetadata(string host);
 
-        // Gets the images
-        void loadLabeledImages(string host);
-
+        
     };
 }
 
