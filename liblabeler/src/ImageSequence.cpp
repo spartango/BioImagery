@@ -4,7 +4,7 @@
 #include "opencv2/core/core_c.h"
 #include "opencv2/highgui/highgui_c.h"
  
-namespace Bioimagery{
+namespace Bioimagery {
     ImageSequence::ImageSequence(uint32_t id): id(id) {
 
     }
@@ -66,7 +66,7 @@ namespace Bioimagery{
                     LabeledImage *newImage = 
                             new LabeledImage(document["images"][i].GetUint());
                     // Take the object and load its metadata
-                    newImage->load();
+                    newImage->load(host);
                     images.push_back(newImage);
                 }
             }
