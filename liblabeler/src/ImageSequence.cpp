@@ -31,8 +31,8 @@ namespace Bioimagery {
 
         // URL: host/imageseq/id/describe
 
-        char url[host.length() + 26 + 10];
-        sprintf(url, "http://%s/imageseq/%u/describe", host.c_str(), id);
+        char url[host.length() + 17 + 10];
+        sprintf(url, "http://%s/imageseq/%u", host.c_str(), id);
         const char* metadataJSON = curlGet(url).c_str();
 
         // Parse metadata
