@@ -6,7 +6,7 @@ LIB_FLAGS = -lcurl -lm -lopencv_core -lopencv_highgui -lopencv_video -lopencv_im
 LDFLAGS = -I/usr/local/include/opencv2 $(LIB_FLAGS)
 
 # Source files in the library
-SRC = Roi.cpp util/CurlUtils.cpp LabeledImage.cpp
+SRC = Roi.cpp util/CurlUtils.cpp LabeledImage.cpp ImageSequence.cpp
 OBJECT = $(SRC:.cpp=.o)
 
 UNAME := $(shell uname)
@@ -23,8 +23,7 @@ liblabeler: $(OBJECT)
 
 # Installs the shared library and headers, may require root perms
 install:
-	cp Roi.h /usr/include
-	cp LabeledImage.h /usr/include
+	cp *.h /usr/include
 	cp liblabeler.so* /usr/lib
 
 # Compiles cpp files to objects, position independent and ready for shared use
