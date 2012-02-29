@@ -12,8 +12,7 @@ namespace Bioimagery {
 
     LabeledImage::LabeledImage(uint32_t t_id):
                               id(t_id),
-                              image(NULL),
-                              rois(NULL){
+                              image(NULL) {
 
     }
 
@@ -75,6 +74,7 @@ namespace Bioimagery {
 
     void LabeledImage::loadRois(string host) {
         // URL: host/image/id/rois
+        rois.clear();
 
         char url[host.length() + 19 + 10];
         sprintf(url, "http://%s/image/%u/rois", host.c_str(), id);
